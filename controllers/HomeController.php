@@ -1,14 +1,16 @@
 <?php 
 class HomeController {
-		
-	public function __construct(){	
 
+	private $_db;
+		
+	public function __construct($db){	
+		$this->_db = $db;
 	}
 	
 	public function run(){	
 		$notification = "Hello World !";
 
-		require_once(VIEWS_PATH.'home.php');
+		include(VIEWS_PATH.'home.php');
 	}
 	
 }

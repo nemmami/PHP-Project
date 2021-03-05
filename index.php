@@ -1,11 +1,18 @@
 <?php
 	define('VIEWS_PATH','views/');
 
-	require_once(VIEWS_PATH.'header.php'); 
+	function loadClass($className) {
+		require_once('models/' . $className . '.class.php');
+	}
+	spl_autoload_register('loadClass');
+
+	$db=Db::getInstance();
+
+	include(VIEWS_PATH.'header.php'); 
 	
 	require_once('controllers/HomeController.php');	
-	$controller = new HomeController();
+	$controller = new HomeController($db);
 	$controller->run();
 
-	require_once(VIEWS_PATH.'footer.php');
+	include(VIEWS_PATH.'footer.php');
 ?>
