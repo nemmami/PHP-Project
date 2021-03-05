@@ -1,3 +1,3 @@
-# Boilerplate pour les projets Web
+# Boilerplate
 
-Structure MVC de base requise pour les projets Web
+Boilerplate code provided to the students in order to start the project
