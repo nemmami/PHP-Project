@@ -8,7 +8,7 @@ class HomeController {
 	}
 	
 	public function run(){	
-		$notification = "Hello World !";
+		$notification = "";
 
 		include(VIEWS_PATH.'home.php');
 	}
