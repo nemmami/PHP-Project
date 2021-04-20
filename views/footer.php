@@ -7,6 +7,9 @@
             <div class="col-md-6 copyRight">
                 © 2021 BigSpicy, Inc. Tous droits réservés.
             </div>
+            <div>
+                Auteur : Nemmaoui Amine & Maxime VanRechem
+            </div>
         </div>
     </footer>
 </html>

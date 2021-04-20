@@ -25,4 +25,37 @@ class Db
         return self::$instance;
     }
 
+
+    public function valider_utilisateur($email_adress,$password) {
+        $query = 'SELECT password FROM members WHERE email_adress=:email_adress';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':email_adress', $email_adress);
+        $ps->execute();
+        if($ps->rowCount() == 0)
+            return false;
+        $hash = $ps->fetch()->password;
+        return password_verify($password, $hash);
+    }
+    public function select_connection($email_adress, $password)
+    {
+        $query = "SELECT * FROM members WHERE email_adress =" . $this->_db->quote($email_adress) . " AND password =" . $this->_db->quote($password);
+        $result = $this->_connection->query($query);
+        if ($result->rowcount() == 0) {
+            return null;
+        } else {
+            $row = $result->fetch();
+            return $row;
+        }
+    }
+    public function selectMembres() {
+        $query = 'SELECT * FROM members ORDER BY no ASC';
+        $ps = $this->_connection->prepare($query);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Membre($row->no,$row->nom,$row->password,$row->photo);
+        }
+        var_dump($tableau);
+        return $tableau;
+    }
 }
