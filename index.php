@@ -26,18 +26,21 @@
     # index.php?action=...
 
     switch ($_GET['action']) {
-        case 'login': # action=login
+        case 'home' : # action=home
             require_once(CONTROLLERS_PATH.'HomeController.php');
             $controller = new HomeController($db);
             break;
-        case 'register' : #action=register
+        case 'login': # action=login
+            require_once(CONTROLLERS_PATH.'LoginController.php');
+            $controller = new LoginController($db);
+            break;
+        case 'register' :# action=register
             require_once(CONTROLLERS_PATH.'RegisterController.php');
             $controller = new RegisterController($db);
             break;
     }
 
     # Exécution du contrôleur défini dans le switch précédent
-
     $controller->run();
 
 	include(VIEWS_PATH.'footer.php');
