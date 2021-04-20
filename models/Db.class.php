@@ -7,8 +7,8 @@ class Db
     private function __construct()
     {
         try {
-            //$this->_connection = new PDO('mysql:host=localhost;port=3306;dbname=webproject;charset=utf8','root','');
-            $this->_connection = new PDO('mysql:host=localhost;port=3307;dbname=webproject;charset=utf8','root','');
+            $this->_connection = new PDO('mysql:host=localhost;port=3306;dbname=webproject;charset=utf8','root','');
+            //$this->_connection = new PDO('mysql:host=localhost;port=3307;dbname=webproject;charset=utf8','root','');
             $this->_connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$this->_connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
         } 
@@ -37,8 +37,8 @@ class Db
         $hash = $ps->fetch()->password;
         return password_verify($password, $hash);
     }
-    public function select_connection($email_adress, $password)
-    {
+
+    public function select_connection($email_adress, $password) {
         $query = "SELECT * FROM members WHERE email_adress =" . $this->_connection->quote($email_adress) . " AND password =" . $this->_connection->quote($password);
         $result = $this->_connection->query($query);
         if ($result->rowcount() == 0) {
@@ -47,6 +47,31 @@ class Db
             $row = $result->fetch();
             return $row;
         }
+    }
+
+    public function username_exists($username) {
+        $query = 'SELECT * from membres WHERE username=:username';
+        $ps = $this->_db->prepare($query);
+        $ps->bindValue(':username',$username);
+        $ps->execute();
+        return ($ps->rowcount() != 0);
+    }
+
+    public function email_exists($email_adress) {
+        $query = 'SELECT * from membres WHERE email_adress=:email_adress';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':username',$email_adress);
+        $ps->execute();
+        return ($ps->rowcount() != 0);
+    }
+
+    public function insert_membre($username,$email_adress,$password) {
+        $query = 'INSERT INTO membres (username,email_adress,password) values (:username,:email_adress,:password)';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':username',$username);
+        $ps->bindValue(':email_adress',$email_adress);
+        $ps->bindValue(':password',$password);
+        $ps->execute();
     }
 
 }
