@@ -49,4 +49,23 @@ class Db
         }
     }
 
+
+    # Function that performs a SELECT in the members table
+    # and which returns a Array of object
+    public function selectMember() {
+        $query = 'SELECT username FROM members';
+        $ps = $this->_db->prepare($query);
+        $ps->execute();
+
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Member($row->username);
+        }
+        # For debug : display of the table to be returned
+        // var_dump($tableau);
+        return $tableau;
+    }
+
+    }
+
 }
