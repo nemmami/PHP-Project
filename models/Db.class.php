@@ -49,6 +49,7 @@ class Db
         }
     }
 
+
     public function username_exists($username) {
         $query = 'SELECT * from membres WHERE username=:username';
         $ps = $this->_db->prepare($query);
@@ -65,13 +66,34 @@ class Db
         return ($ps->rowcount() != 0);
     }
 
-    public function insert_membre($username,$email_adress,$password) {
+    public function insert_membre($username,$email_adress,$password)
+    {
         $query = 'INSERT INTO membres (username,email_adress,password) values (:username,:email_adress,:password)';
         $ps = $this->_connection->prepare($query);
-        $ps->bindValue(':username',$username);
-        $ps->bindValue(':email_adress',$email_adress);
-        $ps->bindValue(':password',$password);
+        $ps->bindValue(':username', $username);
+        $ps->bindValue(':email_adress', $email_adress);
+        $ps->bindValue(':password', $password);
         $ps->execute();
     }
+
+
+        # Function that performs a SELECT in the members table
+        # and which returns a Array of object
+        public function selectMember(){
+            $query = 'SELECT username FROM members';
+            $ps = $this->_db->prepare($query);
+            $ps->execute();
+
+            $tableau = array();
+            while ($row = $ps->fetch()) {
+                $tableau[] = new Member($row->username);
+            }
+            # For debug : display of the table to be returned
+            // var_dump($tableau);
+            return $tableau;
+        }
+
+
+
 
 }
