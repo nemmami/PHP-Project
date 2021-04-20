@@ -50,6 +50,7 @@ class Db
     }
 
 
+        
     public function username_exists($username) {
         $query = 'SELECT * from members WHERE username=:username';
         $ps = $this->_connection->prepare($query);
