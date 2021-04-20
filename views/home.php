@@ -16,7 +16,6 @@
 
 
 <form class="table" action="index.php?action=register" method="post" id="register">
-
     <h5>REGISTER</h5>
     <div class="form-floating mb-3">
         <input type="username" class="form-control" id="floatingInput" placeholder="Username" name="username">
@@ -30,7 +29,7 @@
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
         <label for="floatingPassword">Password</label>
         <br>
-        <input class="btn btn-primary" type="submit" value="Register">
+        <input class="btn btn-primary" type="submit" value="Register" name="form_ajout">
         <?php echo $notificationRegister; ?>
     </div>
 </form>

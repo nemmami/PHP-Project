@@ -51,24 +51,24 @@ class Db
 
 
     public function username_exists($username) {
-        $query = 'SELECT * from membres WHERE username=:username';
-        $ps = $this->_db->prepare($query);
+        $query = 'SELECT * from members WHERE username=:username';
+        $ps = $this->_connection->prepare($query);
         $ps->bindValue(':username',$username);
         $ps->execute();
         return ($ps->rowcount() != 0);
     }
 
     public function email_exists($email_adress) {
-        $query = 'SELECT * from membres WHERE email_adress=:email_adress';
+        $query = 'SELECT * from members WHERE email_adress=:email_adress';
         $ps = $this->_connection->prepare($query);
-        $ps->bindValue(':username',$email_adress);
+        $ps->bindValue(':email_adress',$email_adress);
         $ps->execute();
         return ($ps->rowcount() != 0);
     }
 
     public function insert_membre($username,$email_adress,$password)
     {
-        $query = 'INSERT INTO membres (username,email_adress,password) values (:username,:email_adress,:password)';
+        $query = 'INSERT INTO members (username,email_adress,password) values (:username,:email_adress,:password)';
         $ps = $this->_connection->prepare($query);
         $ps->bindValue(':username', $username);
         $ps->bindValue(':email_adress', $email_adress);
