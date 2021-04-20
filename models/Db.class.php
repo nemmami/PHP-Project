@@ -38,7 +38,7 @@ class Db
     }
     public function select_connection($email_adress, $password)
     {
-        $query = "SELECT * FROM members WHERE email_adress =" . $this->_db->quote($email_adress) . " AND password =" . $this->_db->quote($password);
+        $query = "SELECT * FROM members WHERE email_adress =" . $this->_connection->quote($email_adress) . " AND password =" . $this->_connection->quote($password);
         $result = $this->_connection->query($query);
         if ($result->rowcount() == 0) {
             return null;

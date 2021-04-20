@@ -17,13 +17,12 @@ class HomeController {
         */
         $notificationLogin = "";
 
-
         # L'utilisateur s'est-il bien authentifié ?
 
         if (empty($_POST)) {
             # L'utilisateur doit remplir le formulaire
             $notificationLogin = 'Authentifiez-vous';
-        } elseif (!$this->_db->valider_utilisateur($_POST['email'], $_POST['password'])) {
+        } elseif (!$this->_db->select_connection($_POST['email'], $_POST['password'])) {
             # L'authentification n'est pas correcte
             $notificationLogin = 'Vos données d\'authentification ne sont pas correctes.';
         } else {
