@@ -47,15 +47,5 @@ class Db
             return $row;
         }
     }
-    public function selectMembres() {
-        $query = 'SELECT * FROM members ORDER BY no ASC';
-        $ps = $this->_connection->prepare($query);
-        $ps->execute();
-        $tableau = array();
-        while ($row = $ps->fetch()) {
-            $tableau[] = new Membre($row->no,$row->nom,$row->password,$row->photo);
-        }
-        var_dump($tableau);
-        return $tableau;
-    }
+
 }
