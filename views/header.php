@@ -14,7 +14,7 @@
         <header>
             <title>Big Spicy</title>
             <br>
-            <img src="<?php echo VIEWS_PATH ?>images/logo.png" alt="logo" class="logo">
+            <img src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
             <strong class="slogan">High in spice but small in price</strong>
             <br>
             <hr>
