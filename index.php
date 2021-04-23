@@ -1,4 +1,4 @@
-<?php
+<?php // OK
 
     # Activation of the SESSION mechanism
     session_start();

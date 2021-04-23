@@ -1,5 +1,5 @@
 <?php
-class RegisterController {
+class RegisterController { // Vous pourriez vérifier que l'email est correct selon une expression régulière
 
     private  $_db;
 

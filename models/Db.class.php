@@ -26,7 +26,7 @@ class Db
         return self::$instance;
     }
 
-
+// idéalement, nous avons demandé que tout le code soit en anglais
     public function valider_utilisateur($email_adress,$password) {
         $query = 'SELECT password FROM members WHERE email_adress=:email_adress';
         $ps = $this->_connection->prepare($query);

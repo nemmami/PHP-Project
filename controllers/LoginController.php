@@ -34,7 +34,7 @@ class LoginController {
             $_SESSION['authentifie'] = 'ok';
             $_SESSION['login'] = $_POST['email'];
             $member = $this->_db->get_member($_POST['email']);
-            $_SESSION['member'] = $member->html_IdMember();
+            $_SESSION['member'] = $member->html_IdMember(); // OK
             //var_dump($member);
             # HTTP redirection to request the exploration page
             header("Location: index.php?action=default");
