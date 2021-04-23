@@ -1,4 +1,4 @@
-<h1>LISTE DES IDEA</h1>
+<h1>LISTE DES IDEES</h1>
 <table id="ideas">
     <thead>
     <tr>
@@ -13,6 +13,8 @@
                 <td><span class="title"><?php echo $tabIdeasExploration[$i]->getTitle() ?></span></td>
                 <td><span class="text"><?php echo $tabIdeasExploration[$i]->getText() ?></span></td>
                 <td><span class="idIdea"><?php echo $tabIdeasExploration[$i]->getIdIdea() ?></span></td>
+                <td><span class="comments"><button>Comments</button></td>
+                <td><span classe="vote"><button>Vote</button></span></td>
             </tr>
         <?php } ?>
     </tbody>

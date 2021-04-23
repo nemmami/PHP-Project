@@ -28,6 +28,7 @@
             <td><span class="title"><?php echo $tabIdeasProfile[$i]->getTitle() ?></span></td>
             <td><span class="text"><?php echo $tabIdeasProfile[$i]->getText() ?></span></td>
             <td><span class="idIdea"><?php echo $tabIdeasProfile[$i]->getIdIdea() ?></span></td>
+            <td><span class="comments"><button>Comments</button></td>
         </tr>
     <?php } ?>
     </tbody>
