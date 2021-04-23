@@ -48,17 +48,21 @@
             require_once(CONTROLLERS_PATH.'RegisterController.php');
             $controller = new RegisterController($db);
             break;
-        case 'logout' : # action=home
+        case 'logout' : # action=logout
             require_once(CONTROLLERS_PATH.'LogoutController.php');
             $controller = new LogoutController();
             break;
-        case 'addIdea' : # action=home
+        case 'addIdea' : # action=addIdea
             require_once(CONTROLLERS_PATH.'IdeaController.php');
             $controller = new IdeaController($db);
             break;
-        default:        # in all other cases the action=accueil
-            require_once(CONTROLLERS_PATH.'AcceuilController.php');
-            $controller = new AcceuilController();
+        case 'exploration' : # action=exploration
+            require_once(CONTROLLERS_PATH.'ExplorationController.php');
+            $controller = new ExplorationController();
+            break;
+        default:        # dans tous les autres cas l'action=accueil
+            require_once(CONTROLLERS_PATH . 'ProfileController.php');
+            $controller = new ProfileController();
             break;
     }
 

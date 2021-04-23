@@ -31,6 +31,18 @@
     margin-right: 15px ;
 }
 
+.exploration {
+    margin-right: -15px;
+}
+
+nav {
+    text-align: end;
+    margin-right: 150px;
+    margin-top: -75px;
+    color: black;
+    font-size: 27px;
+}
+
 h5 {
     text-align: center;
 }

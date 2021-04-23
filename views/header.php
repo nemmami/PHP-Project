@@ -8,24 +8,29 @@
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="<?php echo VIEWS_PATH ?>css/base.css" media="screen">
-
     </head>
 	<body>
         <header>
             <title>Big Spicy</title>
             <br>
-            <?php  if(isset($_SESSION['authentifie']) ){?>
+            <?php  if(!empty($_SESSION['authentifie'])) { ?>
                 <a href="index.php?action=default">
                     <img  src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
                 </a>
-            <?php} else {  ?>
-            <?php } ?>
-            <?php  if(!isset($_SESSION['authentifie']) ){?>
+                <strong class="slogan">High in spices but small in price</strong>
+                <nav>
+                    <li>
+                        <a href="index.php?action=default">Profile</a>
+                        <a class="exploration" href="index.php?action=exploration">Exploration</a>
+                    </li>
+                </nav>
+                <br>
+                <br>
+                <hr>
+            <?php } else { ?>
                 <img  src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
-            <?php} else {  ?>
+                <strong class="slogan">High in spices but small in price</strong>
+                <br>
+                <hr>
             <?php } ?>
-            <strong class="slogan">High in spices but small in price</strong>
-            <br>
-            <hr>
-
         </header>

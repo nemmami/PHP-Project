@@ -1,5 +1,5 @@
 
-<li> <a href="index.php?action=logout">Se déconnecter</li></a>
+<li><a href="index.php?action=logout">Se déconnecter</li></a>
 <br>
 <form class="tableIdea" action="index.php?action=addIdea" method="post" id="addIdea">
     <div class="form-floating mb-3">
