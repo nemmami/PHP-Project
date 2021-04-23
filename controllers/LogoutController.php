@@ -6,7 +6,7 @@ class LogoutController {
 
         $_SESSION = array();
 
-        # Redirection HTTP pour demander la page exploration
+        # HTTP redirection to request the exploration page
         header("Location: index.php?action=home");
         die();
         include(VIEWS_PATH."profile.php");

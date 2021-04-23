@@ -1,6 +1,6 @@
 <?php
 
-    # Activation du mécanisme des SESSIONs
+    # Activation of the SESSION mechanism
     session_start();
 
 	define('VIEWS_PATH','views/');
@@ -17,7 +17,7 @@
 	include(VIEWS_PATH.'header.php');
 
 
-    # S'il n'y a pas de variable GET 'action' dans l'URL, elle est créée ici à la valeur 'accueil'
+    # If there is no variable GET 'action' in the URL, it is created here at the value 'accueil'
     if (empty($_GET['action'])) {
         $_GET['action'] = 'login';
     }
@@ -32,7 +32,7 @@
 
 
 
-# Switch case sur l'action demandée par la variable GET 'action' précisée dans l'URL
+    # Switch case on the action requested by the GET 'action' variable specified in the URL
     # index.php?action=...
 
     switch ($_GET['action']) {
@@ -56,13 +56,13 @@
             require_once(CONTROLLERS_PATH.'IdeaController.php');
             $controller = new IdeaController($db);
             break;
-        default:        # dans tous les autres cas l'action=accueil
+        default:        # in all other cases the action=accueil
             require_once(CONTROLLERS_PATH.'AcceuilController.php');
             $controller = new AcceuilController();
             break;
     }
 
-    # Exécution du contrôleur défini dans le switch précédent
+    # Execution of the controller defined in the previous switch
     $controller->run();
 
 	include(VIEWS_PATH.'footer.php');

@@ -12,15 +12,15 @@ class IdeaController {
         $notificationIdea = '';
         if (!empty($_POST['form_ajout'])) {
             if (empty($_POST['title']) && empty($_POST['text'])) {
-                $notificationIdea='Veuillez entrer un titre et un texte';
+                $notificationIdea='Please enter a title and the text';
             } elseif (empty($_POST['title'])) {
-                $notificationIdea='Veuillez entrer un titre';
+                $notificationIdea='Please enter a title';
             } elseif (empty($_POST['text'])) {
-                $notificationIdea='Veuillez entrer un text';
+                $notificationIdea='Please enter a text';
             } else {
                 $_SESSION['idea'] = $this->_db->insert_idea($_POST['title'], $_POST['text'], $_SESSION['member']);
                 //var_dump($_SESSION['idea']);
-                $notificationIdea='L\'idée à bien été ajouté';
+                $notificationIdea='The idea has been added';
             }
 
         }

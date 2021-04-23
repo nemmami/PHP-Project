@@ -10,33 +10,33 @@ class LoginController {
 
     public function run() {
 
-        # Si un distrait écrit ?action=login en étant déjà authentifié
+        # If someone writes "?action=login" while being already authenticated 
         if (!empty($_SESSION['authentifie'])) {
-            header("Location: index.php?action=default"); # redirection HTTP vers l'action login
+            header("Location: index.php?action=default"); # HTTP redirection to login action
             die();
         }
 
         $notificationLogin = "";
         $notificationRegister ="";
 
-        # L'utilisateur s'est-il bien authentifié ?
+        # Did the user authenticate correctly?
 
         if(empty($_POST)) {
-            # L'utilisateur doit remplir le formulaire
+            # The user need to complete the form
             $notificationLogin = '';
         } elseif (!$this->_db->valider_utilisateur($_POST['email'], $_POST['password'])) {
-            # L'authentification n'est pas correcte
-            $notificationLogin = 'Vos données d\'authentification ne sont pas correctes.';
+            # wrong authentification
+            $notificationLogin = 'Your authentication data are wrong.';
         } else {
-            # L'utilisateur est bien authentifié
-            # Une variable de session $_SESSION['authenticated'] est créée
-            $notificationLogin = 'Vous etes connecté';
+            # The user is well authenticated
+            # session variable $_SESSION['authenticated'] created
+            $notificationLogin = 'You are connected.';
             $_SESSION['authentifie'] = 'ok';
             $_SESSION['login'] = $_POST['email'];
             $member = $this->_db->get_member($_POST['email']);
             $_SESSION['member'] = $member->html_IdMember();
             //var_dump($member);
-            # Redirection HTTP pour demander la page exploration
+            # HTTP redirection to request the exploration page
             header("Location: index.php?action=default");
             die();
         }
