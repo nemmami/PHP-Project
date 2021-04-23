@@ -1,4 +1,5 @@
-	</body>
+        </div>
+    </body>
     <footer>
         <div class="row">
             <div class="col-md-6 mail">

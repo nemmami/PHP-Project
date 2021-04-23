@@ -62,7 +62,7 @@
             break;
         default:        # dans tous les autres cas l'action=accueil
             require_once(CONTROLLERS_PATH . 'ProfileController.php');
-            $controller = new ProfileController();
+            $controller = new ProfileController($db);
             break;
     }
 

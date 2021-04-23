@@ -1,5 +1,5 @@
 <h1>LISTE DES IDEA</h1>
-<table class="ideas">
+<table id="ideas">
     <thead>
     <tr>
         <th>Title</th>
@@ -8,11 +8,11 @@
     </tr>
     </thead>
     <tbody>
-        <?php for ($i = 0; $i < count($tabIdeas); $i++) { ?>
+        <?php for ($i = 0; $i < count($tabIdeasExploration); $i++) { ?>
             <tr>
-                <td><span class="title"><?php echo $tabIdeas[$i]->getTitle() ?></span></td>
-                <td><span class="text"><?php echo $tabIdeas[$i]->getText() ?></span></td>
-                <td><span class="idIdea"><?php echo $tabIdeas[$i]->getIdIdea() ?></span></td>
+                <td><span class="title"><?php echo $tabIdeasExploration[$i]->getTitle() ?></span></td>
+                <td><span class="text"><?php echo $tabIdeasExploration[$i]->getText() ?></span></td>
+                <td><span class="idIdea"><?php echo $tabIdeasExploration[$i]->getIdIdea() ?></span></td>
             </tr>
         <?php } ?>
     </tbody>

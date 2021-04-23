@@ -1,6 +1,4 @@
 
-<li><a href="index.php?action=logout">Se déconnecter</li></a>
-<br>
 <h1>AJOUT D'IDEE</h1>
 <form class="tableIdea" action="index.php?action=addIdea" method="post" id="addIdea">
     <div class="form-floating mb-3">
@@ -15,3 +13,21 @@
         <?php echo $notificationIdea ?>
     </div>
 </form>
+
+<table id="ideas">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Idea</th>
+        <th>Id_idea</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php for ($i = 0; $i < count($tabIdeasProfile); $i++) { ?>
+        <tr>
+            <td><span class="title"><?php echo $tabIdeasProfile[$i]->getTitle() ?></span></td>
+            <td><span class="text"><?php echo $tabIdeasProfile[$i]->getText() ?></span></td>
+            <td><span class="idIdea"><?php echo $tabIdeasProfile[$i]->getIdIdea() ?></span></td>
+        </tr>
+    <?php } ?>
+    </tbody>

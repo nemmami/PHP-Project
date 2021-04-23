@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo VIEWS_PATH ?>css/base.css" media="screen">
     </head>
 	<body>
+    <div class="contenue">
         <header>
             <title>Big Spicy</title>
             <br>
@@ -22,6 +23,7 @@
                     <li>
                         <a href="index.php?action=default">Profile</a>
                         <a class="exploration" href="index.php?action=exploration">Exploration</a>
+                        <a href="index.php?action=logout">Se déconnecter</a>
                     </li>
                 </nav>
                 <br>

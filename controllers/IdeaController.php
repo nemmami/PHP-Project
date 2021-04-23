@@ -19,20 +19,10 @@ class IdeaController {
                 $notificationIdea='Please enter a text';
             } else {
                 $_SESSION['idea'] = $this->_db->insert_idea($_POST['title'], $_POST['text'], $_SESSION['member']);
-                //var_dump($_SESSION['idea']);
-                $notificationIdea='The idea has been added';
-                /*
-                //$horodatage = date_time_set('D','d','M','','')
-                $this->_db->insert_idea($_POST['title'], $_POST['text'], $_SESSION['member']);
-                $_SESSION['idea'] = $this->_db->get_idea_exploration($_SESSION['member']);
-                //$_SESSION['date'] = $_SESSION['idea']->getSubmittedDate();
-                var_dump($_SESSION['idea']);
-                $notificationIdea='L\'idée à bien été ajouté';
->>>>>>> Stashed changes
-                */
             }
 
         }
+        $tabIdeasProfile = $this->_db->get_idea_profile($_SESSION['member']);;
         include (VIEWS_PATH.'profile.php');
     }
 }
