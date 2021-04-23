@@ -14,8 +14,18 @@
         <header>
             <title>Big Spicy</title>
             <br>
-            <img src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
+            <?php  if(isset($_SESSION['authentifie']) ){?>
+                <a href="index.php?action=default">
+                    <img  src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
+                </a>
+            <?php} else {  ?>
+            <?php } ?>
+            <?php  if(!isset($_SESSION['authentifie']) ){?>
+                <img  src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
+            <?php} else {  ?>
+            <?php } ?>
             <strong class="slogan">High in spices but small in price</strong>
             <br>
             <hr>
+
         </header>

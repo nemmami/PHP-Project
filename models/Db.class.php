@@ -38,6 +38,17 @@ class Db
         return password_verify($password, $hash);
     }
 
+    public function get_member ($email_adress) {
+        $query = 'SELECT * FROM members WHERE email_adress=:email_adress';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':email_adress',$email_adress);
+        $ps->execute();
+        while ($row = $ps->fetch()) {
+            $membre = new Member($row->id_member, $row->username, $row->email_adress, $row->password, $row->is_admin, $row->is_banned);
+        }
+        return $membre;
+    }
+
     public function select_connection($email_adress, $password) {
         $query = "SELECT * FROM members WHERE email_adress =" . $this->_connection->quote($email_adress) . " AND password =" . $this->_connection->quote($password);
         $result = $this->_connection->query($query);
@@ -49,8 +60,6 @@ class Db
         }
     }
 
-
-        
     public function username_exists($username) {
         $query = 'SELECT * from members WHERE username=:username';
         $ps = $this->_connection->prepare($query);
@@ -67,8 +76,7 @@ class Db
         return ($ps->rowcount() != 0);
     }
 
-    public function insert_membre($username,$email_adress,$password)
-    {
+    public function insert_membre($username,$email_adress,$password) {
         $query = 'INSERT INTO members (username,email_adress,password) values (:username,:email_adress,:password)';
         $ps = $this->_connection->prepare($query);
         $ps->bindValue(':username', $username);
@@ -77,6 +85,21 @@ class Db
         $ps->execute();
     }
 
+    public function insert_idea($title, $text,$id_member) {
+        $query = 'INSERT INTO ideas (title,text,id_member) values (:title,:text,:id_member)';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':title', $title);
+        $ps->bindValue(':text', $text);
+        $ps->bindValue(':id_member', $id_member);
+        $ps->execute();
+        /*
+        while ($row = $ps->fetch()) {
+            $idea = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
+                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status);
+        }
+        return $idea;
+        */
+     }
 
         # Function that performs a SELECT in the members table
         # and which returns a Array of object
@@ -93,8 +116,6 @@ class Db
             // var_dump($tableau);
             return $tableau;
         }
-
-
 
 
 }

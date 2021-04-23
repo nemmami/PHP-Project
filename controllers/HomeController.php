@@ -10,6 +10,7 @@ class HomeController {
     public function run(){
         $notificationLogin = "";
         $notificationRegister = "";
+        $notificationIdea="";
         include(VIEWS_PATH.'home.php');
     }
 
