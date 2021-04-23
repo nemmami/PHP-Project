@@ -4,6 +4,7 @@
     session_start();
 
 	define('VIEWS_PATH','views/');
+    define('MODELs_PATH','models/');
     define('CONTROLLERS_PATH','controllers/');
 
 	function loadClass($className) {
