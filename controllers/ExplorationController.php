@@ -2,8 +2,13 @@
 
 
 class ExplorationController{
-    public function run() {
+    private $_db;
 
+    public function __construct($db){
+        $this->_db = $db;
+    }
+    public function run() {
+        $tabIdeas = $this->_db->get_idea_exploration($_SESSION['member']);
         include (VIEWS_PATH."exploration.php");
     }
 }

@@ -1,6 +1,7 @@
 
 <li><a href="index.php?action=logout">Se déconnecter</li></a>
 <br>
+<h1>AJOUT D'IDEE</h1>
 <form class="tableIdea" action="index.php?action=addIdea" method="post" id="addIdea">
     <div class="form-floating mb-3">
         <input type="text" class="form-control" id="floatingInput" placeholder="title" name="title">

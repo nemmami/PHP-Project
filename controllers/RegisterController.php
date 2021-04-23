@@ -15,7 +15,7 @@ class RegisterController {
             if (empty($_POST['username']) && empty($_POST['email']) && empty($_POST['password'])) {
                 $notificationRegister = 'Please enter a username, email and password';
             } elseif (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])) {
-                $notificationRegister = 'please complete all gaps.';
+                $notificationRegister = 'Please complete all gaps.';
             } elseif ($this->_db->username_exists($_POST['username'])) {
                 $notificationRegister = 'The username already exists, choose another.';
             } elseif($this->_db->email_exists($_POST['email'])){

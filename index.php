@@ -58,7 +58,7 @@
             break;
         case 'exploration' : # action=exploration
             require_once(CONTROLLERS_PATH.'ExplorationController.php');
-            $controller = new ExplorationController();
+            $controller = new ExplorationController($db);
             break;
         default:        # dans tous les autres cas l'action=accueil
             require_once(CONTROLLERS_PATH . 'ProfileController.php');
