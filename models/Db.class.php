@@ -133,6 +133,14 @@ class Db
         return $tableau;
     }
 
+    public function get_number_of_vote($id_idea) {
+        $query = 'SELECT COUNT * FROM votes WHERE id_idea=:id_idea';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_idea',$id_idea);
+        $ps->execute();
+        return $ps;
+    }
+
         # Function that performs a SELECT in the members table
         # and which returns a Array of object
         public function selectMember(){
