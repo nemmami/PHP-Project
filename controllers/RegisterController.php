@@ -1,4 +1,4 @@
-<?php
+<?php // Vous pourriez vérifier que l'adresse email est correctement formatée selon une expression régulière
 class RegisterController {
 
     private  $_db;
