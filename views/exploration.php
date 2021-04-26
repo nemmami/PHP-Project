@@ -13,7 +13,8 @@
                 <td><span class="title"><?php echo $tabIdeasExploration[$i]->getTitle() ?></span></td>
                 <td><span class="text"><?php echo $tabIdeasExploration[$i]->getText() ?></span></td>
                 <td><span class="idIdea"><?php echo $tabIdeasExploration[$i]->getIdIdea() ?></span></td>
-                <td><span class="comments"><button>Comments</button></td>
+                <td><span class="comments"><button value="<?php echo $tabIdeasExploration[$i]->getIdIdea(); ?>"
+                            <?php echo $idIdea = $tabIdeasExploration[$i]->getIdIdea()?> >Comments</button></td>
                 <td><span classe="vote"><button>Vote</button></span></td>
             </tr>
         <?php } ?>

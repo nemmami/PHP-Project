@@ -91,23 +91,12 @@ class Db
         $ps->bindValue(':title', $title);
         $ps->bindValue(':text', $text);
         $ps->bindValue(':id_member', $id_member);
-        //$ps->bindValue(':submitted_date', $submitted_date);
         $ps->execute();
-        //var_dump($ps);
-        /*
-        while ($row = $ps->fetch()) {
-            $idea = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
-                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status);
-        }
-        return $ps;
-        */
     }
 
     public function get_idea_profile($id_member) {
         $query = 'SELECT * FROM ideas WHERE id_member=:id_member';
         $ps = $this->_connection->prepare($query);
-        //$ps->bindValue(':title',$title);
-        //$ps->bindValue(':text',$text);
         $ps->bindValue(':id_member',$id_member);
         $ps->execute();
         $tableau = array();
@@ -121,8 +110,6 @@ class Db
     public function get_idea_exploration($id_member) {
         $query = 'SELECT * FROM ideas WHERE id_member!=:id_member';
         $ps = $this->_connection->prepare($query);
-        //$ps->bindValue(':title',$title);
-        //$ps->bindValue(':text',$text);
         $ps->bindValue(':id_member',$id_member);
         $ps->execute();
         $tableau = array();
