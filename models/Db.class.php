@@ -13,7 +13,7 @@ class Db
 			$this->_connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
         } 
 		catch (PDOException $e) {
-		    die('Erreur de connexion à la base de données : '.$e->getMessage());
+		    die('Database connection error : '.$e->getMessage());
         }
     }
 
@@ -128,21 +128,48 @@ class Db
         return $ps;
     }
 
-        # Function that performs a SELECT in the members table
-        # and which returns a Array of object
-        public function selectMember(){
-            $query = 'SELECT username FROM members';
-            $ps = $this->_db->prepare($query);
-            $ps->execute();
+    # Function that performs a SELECT in the members table
+    # and which returns a Array of object
+    public function selectMember(){
+        $query = 'SELECT username FROM members';
+        $ps = $this->_db->prepare($query);
+        $ps->execute();
 
-            $tableau = array();
-            while ($row = $ps->fetch()) {
-                $tableau[] = new Member($row->username);
-            }
-            # For debug : display of the table to be returned
-            // var_dump($tableau);
-            return $tableau;
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Member($row->username);
         }
+        # For debug : display of the table to be returned
+        // var_dump($tableau);
+        return $tableau;
+    }
 
-
+    public function update_status($status, $id_idea){ 
+        if($status == 'submitted'){
+            $query = "UPDATE ideas SET status= 'submitted', submitted_date=current_timestamp() WHERE id_idea=$id_idea";
+            $ps = $this->_connection->prepare($query);
+            $ps->bindValue('submitted',$status);
+            $ps->bindValue(current_timestamp(),$submitted_date);
+            $ps->execute();   
+        }elseif ($value == "accepted") {
+            $query = "UPDATE ideas SET status= 'accepted', accepted_date=current_timestamp() WHERE id_idea=$id_idea";
+            $ps = $this->_connection->prepare($query);
+            $ps->bindValue('accepted',$status);
+            $ps->bindValue(current_timestamp(),$accepted_date);
+            $ps->execute();
+        }elseif($value == "refused"){
+            $query = "UPDATE ideas SET status= 'refused', refused_date=current_timestamp() WHERE id_idea=$id_idea";
+            $ps = $this->_connection->prepare($query);
+            $ps->bindValue('refused',$status);
+            $ps->bindValue(current_timestamp(),$refused_date);
+            $ps->execute();
+        }else{
+            $query = "UPDATE ideas SET status= 'closed', closed_date=current_timestamp() WHERE id_idea=$id_idea";
+            $ps = $this->_connection->prepare($query);
+            $ps->bindValue('closed',$status);
+            $ps->bindValue(current_timestamp(),$closed_date);
+            $ps->execute();
+        }
+    }
+    
 }

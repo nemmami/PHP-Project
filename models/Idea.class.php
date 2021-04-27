@@ -98,7 +98,4 @@ class Idea {
         return $this->_status;
     }
 
-
-
-
-}
+}   
