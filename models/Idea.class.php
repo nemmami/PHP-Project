@@ -1,7 +1,8 @@
 <?php
 
 
-class Idea {
+class Idea
+{
     private $_id_idea;
     private $_id_member;
     private $_title;
@@ -97,6 +98,4 @@ class Idea {
     {
         return $this->_status;
     }
-
-
 }
