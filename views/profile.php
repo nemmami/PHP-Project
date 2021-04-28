@@ -1,4 +1,3 @@
-
 <h1>AJOUT D'IDEE</h1>
 <form class="tableIdea" action="index.php?action=addIdea" method="post" id="addIdea">
     <div class="form-floating mb-3">
@@ -6,7 +5,8 @@
         <label for="floatingInput">Title</label>
     </div>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="text" style="height: 100px"></textarea>
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="text"
+                  style="height: 100px"></textarea>
         <label for="floatingTextarea2">Text</label>
         <br>
         <input class="btn btn-primary" type="submit" value="Add Idea" name="form_ajout">
@@ -14,21 +14,23 @@
     </div>
 </form>
 
-<table id="ideas">
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Idea</th>
-        <th>Id_idea</th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php for ($i = 0; $i < count($tabIdeasProfile); $i++) { ?>
+<form action="" method="post">
+    <table id="ideas">
+        <thead>
         <tr>
-            <td><span class="title"><?php echo $tabIdeasProfile[$i]->getTitle() ?></span></td>
-            <td><span class="text"><?php echo $tabIdeasProfile[$i]->getText() ?></span></td>
-            <td><span class="idIdea"><?php echo $tabIdeasProfile[$i]->getIdIdea() ?></span></td>
-            <td><span class="comments"><button>Comments</button></td>
+            <th>Title</th>
+            <th>Idea</th>
+            <th><input type="submit" name="form_comments" value="Comments"></th>
         </tr>
-    <?php } ?>
-    </tbody>
+        </thead>
+        <tbody>
+        <?php for ($i = 0; $i < count($tabIdeasProfile); $i++) { ?>
+            <tr>
+                <td><span class="title"><?php echo $tabIdeasProfile[$i]->getTitle() ?></span></td>
+                <td><span class="text"><?php echo $tabIdeasProfile[$i]->getText() ?></span></td>
+                <td><input type="radio" name="comments" value="<?php echo $tabIdeasProfile[$i]->getIdIdea() ?>"></td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</form>

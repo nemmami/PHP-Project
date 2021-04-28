@@ -38,6 +38,14 @@ class Db
         return password_verify($password, $hash);
     }
 
+    public function valide_email($email) {
+        if (preg_match("/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i", $email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function get_member ($email_adress) {
         $query = 'SELECT * FROM members WHERE email_adress=:email_adress';
         $ps = $this->_connection->prepare($query);
@@ -118,6 +126,35 @@ class Db
                 $row->accepted_date,$row->refused_date,$row->closed_date,$row->status);
         }
         return $tableau;
+    }
+
+    public function get_vote($id_member) {
+        $query = 'SELECT * FROM votes WHERE id_member = :id_member';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Vote($row->id_member,$row->id_idea);
+        }
+        return $tableau;
+    }
+
+    public function possible_vote($id_member, $id_idea) {
+        $query = 'SELECT * FROM votes WHERE id_member = :id_member AND id_idea = :id_idea';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->bindValue(':id_idea',$id_idea);
+        $nombre = $ps->rowCount();
+        return $nombre;
+    }
+
+    public function insert_vote($id_member, $id_idea) {
+        $query = 'INSERT INTO votes (id_member,id_idea) values (:id_member,:id_idea)';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_idea', $id_idea);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
     }
 
     public function get_number_of_vote($id_idea) {

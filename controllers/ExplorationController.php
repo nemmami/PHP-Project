@@ -9,7 +9,7 @@ class ExplorationController{
     }
 
     public function run() {
-        $idIdea = '';
+        $notificationVote = '';
         $tabIdeasExploration = $this->_db->get_idea_exploration($_SESSION['member']);
         include (VIEWS_PATH."exploration.php");
     }
