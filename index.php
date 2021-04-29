@@ -64,7 +64,11 @@
             require_once(CONTROLLERS_PATH.'VoteController.php');
             $controller = new VoteController($db);
             break;
-        default:        # dans tous les autres cas l'action=accueil
+        case 'comments' : # action=comments
+            require_once(CONTROLLERS_PATH.'CommentsController.php');
+            $controller = new CommentsController($db);
+            break;
+        default :        # dans tous les autres cas l'action=accueil
             require_once(CONTROLLERS_PATH . 'ProfileController.php');
             $controller = new ProfileController($db);
             break;

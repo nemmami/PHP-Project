@@ -9,7 +9,6 @@ class LoginController {
     }
 
     public function run() {
-
         # If someone writes "?action=login" while being already authenticated 
         if (!empty($_SESSION['authentifie'])) {
             header("Location: index.php?action=default"); # HTTP redirection to login action
@@ -18,9 +17,7 @@ class LoginController {
 
         $notificationLogin = "";
         $notificationRegister ="";
-
         # Did the user authenticate correctly?
-
         if(empty($_POST)) {
             # The user need to complete the form
             $notificationLogin = '';

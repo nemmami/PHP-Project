@@ -98,4 +98,9 @@ class Idea
     {
         return $this->_status;
     }
+
+    public function html_IdIdea()
+    {
+        return htmlspecialchars($this->_id_idea);
+    }
 }

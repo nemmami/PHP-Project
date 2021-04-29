@@ -15,8 +15,9 @@
             <tr>
                 <td><span class="title"><?php echo $tabIdeasExploration[$i]->getTitle() ?></span></td>
                 <td><span class="text"><?php echo $tabIdeasExploration[$i]->getText() ?></span></td>
-                <td><input type="radio" name="vote" value="<?php echo $tabIdeasExploration[$i]->getIdIdea() ?>"></td>
-                <td><input type="radio" name="comments" value="<?php echo $tabIdeasExploration[$i]->getIdIdea() ?>"></td>
+                <td><input type="radio" name="vote" value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>"></td>
+                <td><input type="radio" name="comments" value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
+                </td>
             </tr>
         <?php } ?>
         </tbody>
