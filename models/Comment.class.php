@@ -37,33 +37,28 @@ class Comment {
         return $this->_id_idea;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getText()
     {
         return $this->_text;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getSubmittedDate()
     {
         return $this->_submitted_date;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getIsDeleted()
     {
         return $this->_is_deleted;
     }
 
-
-
-
+    public function _set($property, $value)
+    {
+        $property = $value;
+    }
 
 
 

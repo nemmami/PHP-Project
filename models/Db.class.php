@@ -187,16 +187,15 @@ class Db
         $ps->execute();
     }
 
-
-    public function get_comments($id_idea) {
+    public function get_comments_of_an_idea($id_idea) {
         $query = 'SELECT * FROM comments WHERE id_idea=:id_idea';
         $ps = $this->_connection->prepare($query);
         $ps->bindValue(':id_idea',$id_idea);
         $ps->execute();
         $tableau = array();
         while ($row = $ps->fetch()) {
-            $tableau[] = new Comment($row->id_comments, $row->id_member, $row->id_idea,
-                $row->text, $row->submitted_date, $row->id_deleted);
+            $tableau[] = new Comment($row->id_comment, $row->id_member, $row->id_idea,
+                $row->text, $row->submitted_date, $row->is_deleted);
         }
         return $tableau;
     }
@@ -205,6 +204,19 @@ class Db
         $query = 'SELECT * FROM comments WHERE id_member=:id_member';
         $ps = $this->_connection->prepare($query);
         $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Comment($row->id_comment, $row->id_member, $row->id_idea,
+                $row->text, $row->submitted_date, $row->is_deleted);
+        }
+        return $tableau;
+    }
+
+    public function get_comments($id_comment) {
+        $query = 'SELECT * FROM comments WHERE id_comment=:id_comment';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_comment',$id_comment);
         $ps->execute();
         $tableau = array();
         while ($row = $ps->fetch()) {

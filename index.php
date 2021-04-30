@@ -19,7 +19,7 @@
 
     # If there is no variable GET 'action' in the URL, it is created here at the value 'accueil'
     if (empty($_GET['action'])) {
-        $_GET['action'] = 'login';
+        $_GET['action'] = 'default';
     }
 
     if (empty($_SESSION['authentifie'])){
@@ -40,29 +40,13 @@
             require_once(CONTROLLERS_PATH.'HomeController.php');
             $controller = new HomeController($db);
             break;
-        case 'login': # action=login
-            require_once(CONTROLLERS_PATH.'LoginController.php');
-            $controller = new LoginController($db);
-            break;
-        case 'register' :# action=register
-            require_once(CONTROLLERS_PATH.'RegisterController.php');
-            $controller = new RegisterController($db);
-            break;
         case 'logout' : # action=logout
             require_once(CONTROLLERS_PATH.'LogoutController.php');
             $controller = new LogoutController();
             break;
-        case 'addIdea' : # action=addIdea
-            require_once(CONTROLLERS_PATH.'IdeaController.php');
-            $controller = new IdeaController($db);
-            break;
         case 'exploration' : # action=exploration
             require_once(CONTROLLERS_PATH.'ExplorationController.php');
             $controller = new ExplorationController($db);
-            break;
-        case 'vote' : # action=vote
-            require_once(CONTROLLERS_PATH.'VoteController.php');
-            $controller = new VoteController($db);
             break;
         case 'comments' : # action=comments
             require_once(CONTROLLERS_PATH.'CommentsController.php');
