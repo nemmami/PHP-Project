@@ -38,6 +38,14 @@ class Db
         return password_verify($password, $hash);
     }
 
+    public function valide_email($email) {
+        if (preg_match("/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i", $email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function get_member ($email_adress) {
         $query = 'SELECT * FROM members WHERE email_adress=:email_adress';
         $ps = $this->_connection->prepare($query);
@@ -120,12 +128,102 @@ class Db
         return $tableau;
     }
 
+    public function get_vote($id_member) {
+        $query = 'SELECT * FROM votes WHERE id_member = :id_member';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Vote($row->id_member,$row->id_idea);
+        }
+        return $tableau;
+    }
+
+    public function get_idea($id_idea) {
+        $query = 'SELECT * FROM ideas WHERE id_idea=:id_idea';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_idea',$id_idea);
+        $ps->execute();
+        while ($row = $ps->fetch()) {
+            $idea = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
+                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status);
+        }
+        return $idea;
+    }
+
+    public function possible_vote($id_member, $id_idea) {
+        $query = 'SELECT * FROM votes WHERE id_member = :id_member AND id_idea = :id_idea';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->bindValue(':id_idea',$id_idea);
+        $ps->execute();
+
+        return $ps->rowCount();
+    }
+
+    public function insert_vote($id_member, $id_idea) {
+        $query = 'INSERT INTO votes (id_member,id_idea) values (:id_member,:id_idea)';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_idea', $id_idea);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
+    }
+
     public function get_number_of_vote($id_idea) {
         $query = 'SELECT COUNT * FROM votes WHERE id_idea=:id_idea';
         $ps = $this->_connection->prepare($query);
         $ps->bindValue(':id_idea',$id_idea);
         $ps->execute();
         return $ps;
+    }
+
+    public function insert_comments($id_member, $id_idea, $text) {
+        $query = 'INSERT INTO comments (id_member,id_idea,text) values (:id_member,:id_idea,:text)';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->bindValue(':id_idea',$id_idea);
+        $ps->bindValue(':text',$text);
+        $ps->execute();
+    }
+
+    public function get_comments_of_an_idea($id_idea) {
+        $query = 'SELECT * FROM comments WHERE id_idea=:id_idea';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_idea',$id_idea);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Comment($row->id_comment, $row->id_member, $row->id_idea,
+                $row->text, $row->submitted_date, $row->is_deleted);
+        }
+        return $tableau;
+    }
+
+    public function get_comments_of_a_member($id_member) {
+        $query = 'SELECT * FROM comments WHERE id_member=:id_member';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Comment($row->id_comment, $row->id_member, $row->id_idea,
+                $row->text, $row->submitted_date, $row->is_deleted);
+        }
+        return $tableau;
+    }
+
+    public function get_comments($id_comment) {
+        $query = 'SELECT * FROM comments WHERE id_comment=:id_comment';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_comment',$id_comment);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Comment($row->id_comment, $row->id_member, $row->id_idea,
+                $row->text, $row->submitted_date, $row->is_deleted);
+        }
+        return $tableau;
     }
 
     # Function that performs a SELECT in the members table
