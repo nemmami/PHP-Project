@@ -24,5 +24,8 @@ class IdeaController {
         }
         $tabIdeasProfile = $this->_db->get_idea_profile($_SESSION['member']);;
         include (VIEWS_PATH.'profile.php');
+
     }
+
+
 }

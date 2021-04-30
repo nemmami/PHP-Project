@@ -11,7 +11,8 @@ class ExplorationController{
     public function run() {
         $idIdea = '';
         $tabIdeasExploration = $this->_db->get_idea_exploration($_SESSION['member']);
-        include (VIEWS_PATH."exploration.php");
+        include (VIEWS_PATH."explorationAdmin.php");
+        
 
     }
 }
