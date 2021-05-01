@@ -3,13 +3,13 @@
 <footer>
     <div class="row">
         <div class="col-md-6 mail">
-            Contactez-nous : BigSpicy@gmail.com
+            Contact us : BigSpicy@gmail.com
         </div>
         <div class="col-md-6 copyRight">
-            © 2021 BigSpicy, Inc. Tous droits réservés.
+            © 2021 BigSpicy, Inc. All rights reserved.
         </div>
         <div>
-            Auteur : Nemmaoui Amine & VanRechem Maxime
+            Author : Nemmaoui Amine & VanRechem Maxime
         </div>
     </div>
 </footer>

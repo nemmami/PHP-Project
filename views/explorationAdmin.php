@@ -4,7 +4,7 @@
     <tr>
         <th>Title</th>
         <th>Idea</th>
-        <th>Id_idea</th>
+        <th>N°idea</th>
     </tr>
     </thead>
     <tbody>

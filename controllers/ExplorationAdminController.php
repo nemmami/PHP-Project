@@ -1,7 +1,7 @@
 <?php
 
 
-class ExplorationController{
+class ExplorationControllerAdminController{
     private $_db;
 
     public function __construct($db){
@@ -16,6 +16,7 @@ class ExplorationController{
         }
 
         $notificationVote = '';
+        $tabIdeasExploration = $this->_db->get_idea_exploration($_SESSION['member']);
         if (!empty($_POST['form_vote'])) {
             if(empty($_POST['vote'])) {
                 $notificationVote = 'Please select an idea';
@@ -23,17 +24,10 @@ class ExplorationController{
                 $notificationVote = 'You have already voted for this idea';
             } else {
                 $this->_db->insert_vote($_SESSION['member'], $_POST['vote']);
-                $nbr = $this->_db->get_number_of_vote($_POST['vote']);
-                $idea = $this->_db->get_idea($_POST['vote']);
-                //var_dump($idea);
-                $idea->setNumberOfVotes($nbr);
-                $this->_db->update_idea($_POST['vote'],$nbr);
-                //var_dump($idea);
                 $notificationVote = 'Your vote has been added';
+
             }
         }
-
-        $tabIdeasExploration = $this->_db->get_idea_exploration($_SESSION['member']);
 
         if(!empty($_POST['form_comments'])) {
             if(empty($_POST['comments'])) {
@@ -45,8 +39,7 @@ class ExplorationController{
                 die();
             }
         }
-
-        include (VIEWS_PATH."exploration.php");
+        include (VIEWS_PATH."explorationAdmin.php");
 
     }
 }

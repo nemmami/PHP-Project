@@ -9,9 +9,9 @@ class ProfileController {
     }
 
     public function run() {
-        # Si un petit fûté écrit ?action=profile sans passer par l'action login
+        # If someone writes ?action=profile without going through the login 
         if (empty($_SESSION['authentifie'])) {
-            header("Location: index.php?action=home"); # redirection HTTP vers l'action login
+            header("Location: index.php?action=home"); # HTTP redirection to the login action
             die();
         }
 
@@ -43,7 +43,7 @@ class ProfileController {
         $notificationComments = '';
         if(!empty($_POST['form_comments'])) {
             if(empty($_POST['comments'])) {
-                $notificationComments = 'Veuillez selectionner une idée';
+                $notificationComments = 'Please select an idea';
             } else {
                 $_SESSION['idea'] = $_POST['comments'];
                 header("Location: index.php?action=comments");
