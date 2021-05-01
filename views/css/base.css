@@ -41,9 +41,13 @@
     color: black;
 }
 
-#contenu {
-    min-height: 100%;
-    position: relative;
+.explo{
+    align-content: center;
+    margin-left: 0px;
+}
+
+main {
+    min-height: calc(100vh - 132px - 78px);
 }
 
 html, body {
@@ -52,10 +56,13 @@ html, body {
 
 nav {
     text-align: end;
-    margin-right: 150px;
-    margin-top: -75px;
+    height: 50px;
+    width: 0px;
+    margin-left: 1100px;
+    margin-top: -83px;
     color: black;
-    font-size: 27px;
+    background-color: grey;
+    font-size: 25px;
 }
 
 h5 {
@@ -76,10 +83,6 @@ footer {
     background-color: grey;
     color: black;
     font-size: 15px;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
     width: 100%;
     padding: 1rem;
     text-align: center;

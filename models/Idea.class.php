@@ -12,9 +12,10 @@ class Idea
     private $_refused_date;
     private $_closed_date;
     private $_status;
+    private $_number_of_vote;
 
 
-    public function __construct($_id_idea, $_id_member, $_title, $_text, $_submitted_date, $_accepted_date, $_refused_date, $_closed_date, $_status)
+    public function __construct($_id_idea, $_id_member, $_title, $_text, $_submitted_date, $_accepted_date, $_refused_date, $_closed_date, $_status, $_number_of_vote)
     {
         $this->_id_idea = $_id_idea;
         $this->_id_member = $_id_member;
@@ -25,6 +26,7 @@ class Idea
         $this->_refused_date = $_refused_date;
         $this->_closed_date = $_closed_date;
         $this->_status = $_status;
+        $this->_number_of_vote = $_number_of_vote;
     }
 
     /**
@@ -97,6 +99,14 @@ class Idea
     public function getStatus()
     {
         return $this->_status;
+    }
+
+    public function getNumberOfVotes() {
+        return $this->_number_of_vote;
+    }
+
+    public function setNumberOfVotes($nbr) {
+        $this->_number_of_vote = $nbr;
     }
 
     public function html_IdIdea()

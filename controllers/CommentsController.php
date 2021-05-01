@@ -20,11 +20,12 @@ class CommentsController {
             $notification = 'Your comments has benn add';
         }
 
+        $notificationDelete = '';
         if(!empty($_POST['delete'])) {
             $comment = $this->_db->get_comments($_POST['delete']);
-            $comment[0]->__set($_POST['delete'],0);
-            var_dump($comment);
-            $notification = 'Your comments has been deleted';
+            $comment[0]->markDeleted($_POST['delete']);
+            //var_dump($comment);
+            $this->_db->update_comments($_POST['delete']);
         }
 
         $tabComments = $this->_db->get_comments_of_an_idea($_SESSION['idea']);

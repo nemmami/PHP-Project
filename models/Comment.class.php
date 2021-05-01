@@ -55,9 +55,8 @@ class Comment {
         return $this->_is_deleted;
     }
 
-    public function _set($property, $value)
-    {
-        $property = $value;
+    public function markDeleted() {
+        $this->_is_deleted = 1;
     }
 
 

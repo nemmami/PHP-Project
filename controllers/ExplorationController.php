@@ -16,7 +16,6 @@ class ExplorationController{
         }
 
         $notificationVote = '';
-        $tabIdeasExploration = $this->_db->get_idea_exploration($_SESSION['member']);
         if (!empty($_POST['form_vote'])) {
             if(empty($_POST['vote'])) {
                 $notificationVote = 'Veuillez selectionner une idée';
@@ -24,10 +23,18 @@ class ExplorationController{
                 $notificationVote = 'Vous avez déjà voté pour cette idée';
             } else {
                 $this->_db->insert_vote($_SESSION['member'], $_POST['vote']);
+                $nbr = $this->_db->get_number_of_vote($_POST['vote']);
+                $idea = $this->_db->get_idea($_POST['vote']);
+                //var_dump($idea);
+                $idea->setNumberOfVotes($nbr);
+                $this->_db->update_idea($_POST['vote'],$nbr);
+                //var_dump($idea);
                 $notificationVote = 'Votre vote a bien été ajouté';
 
             }
         }
+
+        $tabIdeasExploration = $this->_db->get_idea_exploration($_SESSION['member']);
 
         if(!empty($_POST['form_comments'])) {
             if(empty($_POST['comments'])) {
@@ -39,6 +46,7 @@ class ExplorationController{
                 die();
             }
         }
+
         include (VIEWS_PATH."exploration.php");
     }
 }

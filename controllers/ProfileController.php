@@ -50,6 +50,18 @@ class ProfileController {
                 die();
             }
         }
+
+        if(!empty($_POST['form_discussion'])) {
+            if(empty($_POST['comments'])) {
+                $notificationComments = 'Veuillez selectionner une idée';
+            } else {
+                $_SESSION['idea'] = $_POST['comments'];
+                header("Location: index.php?action=comments");
+                die();
+            }
+        }
+
+
         include (VIEWS_PATH."profile.php");
     }
 }

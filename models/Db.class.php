@@ -110,7 +110,7 @@ class Db
         $tableau = array();
         while ($row = $ps->fetch()) {
             $tableau[] = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
-                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status);
+                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
         }
         return $tableau;
     }
@@ -123,7 +123,7 @@ class Db
         $tableau = array();
         while ($row = $ps->fetch()) {
             $tableau[] = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
-                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status);
+                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
         }
         return $tableau;
     }
@@ -147,7 +147,7 @@ class Db
         $ps->execute();
         while ($row = $ps->fetch()) {
             $idea = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
-                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status);
+                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
         }
         return $idea;
     }
@@ -171,11 +171,19 @@ class Db
     }
 
     public function get_number_of_vote($id_idea) {
-        $query = 'SELECT COUNT * FROM votes WHERE id_idea=:id_idea';
+        $query = 'SELECT * FROM votes WHERE id_idea=:id_idea';
         $ps = $this->_connection->prepare($query);
         $ps->bindValue(':id_idea',$id_idea);
         $ps->execute();
-        return $ps;
+        return $ps->rowCount();
+    }
+
+    public function update_idea($id_idea,$number_of_vote) {
+        $query = 'UPDATE ideas SET number_of_vote=:number_of_vote WHERE id_idea=:id_idea';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_idea',$id_idea);
+        $ps->bindValue(':number_of_vote',$number_of_vote);
+        $ps->execute();
     }
 
     public function insert_comments($id_member, $id_idea, $text) {
@@ -224,6 +232,13 @@ class Db
                 $row->text, $row->submitted_date, $row->is_deleted);
         }
         return $tableau;
+    }
+
+    public function update_comments($id_comment) {
+        $query = 'UPDATE comments SET is_deleted=1 WHERE id_comment=:id_comment';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_comment',$id_comment);
+        $ps->execute();
     }
 
     # Function that performs a SELECT in the members table
