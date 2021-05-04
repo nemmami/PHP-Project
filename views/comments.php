@@ -24,6 +24,7 @@
         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 110px"
                   name="text"></textarea>
             <label for="floatingTextarea2">Comments</label>
+            <br>
             <input class="btn btn-primary" type="submit" value="Add Comments" name="form_comments">
             <?php echo $notification ?>
         </div>

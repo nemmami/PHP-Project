@@ -17,7 +17,7 @@ class ProfileController {
 
         $notificationIdea = "";
         $notificationComments = "";
-        $tabIdeasProfile = $this->_db->get_idea_profile($_SESSION['member']);
+
 
         $tabVote = $this->_db->get_vote($_SESSION['member']);
         $tabVoteIdea = array();
@@ -60,7 +60,7 @@ class ProfileController {
                 die();
             }
         }
-
+        $tabIdeasProfile = $this->_db->get_idea_profile($_SESSION['member']);
 
         include (VIEWS_PATH."profile.php");
     }

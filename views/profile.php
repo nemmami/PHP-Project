@@ -3,7 +3,7 @@
         <div class="row align items-start">
             <div class="col">
                 <h1>AJOUT D'IDEE</h1>
-                <form class="tableIdea" action="?action=default" method="post" id="addIdea">
+                <form class="" action="?action=default" method="post" id="addIdea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="title" name="title">
                         <label for="floatingInput">Title</label>
