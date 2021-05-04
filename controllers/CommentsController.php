@@ -7,9 +7,9 @@ class CommentsController {
     }
 
     public function run() {
-        # Si un petit fûté écrit ?action=comments sans passer par l'action login
+        # If someone writes ?action=comments without going through the login 
         if (empty($_SESSION['authentifie'])) {
-            header("Location: index.php?action=home"); # redirection HTTP vers l'action login
+            header("Location: index.php?action=home"); #  HTTP redirection to the login action
             die();
         }
 

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row align items-start">
         <div class="col">
-            <h1>LISTE DES IDEES</h1>
+            <h1>LIST OF IDEAS</h1>
             <form action="?action=exploration" method="post">
                 <?php echo $notificationVote ?>
                 <table id="ideas">

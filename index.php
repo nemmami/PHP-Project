@@ -48,6 +48,14 @@
             require_once(CONTROLLERS_PATH.'ExplorationController.php');
             $controller = new ExplorationController($db);
             break;
+        case 'explorationAdmin' : # action=explorationAdmin
+            require_once(CONTROLLERS_PATH.'ExplorationAdminController.php');
+            $controller = new ExplorationAdminController($db);
+            break;
+        case 'memberList' : # action=exploration
+            require_once(CONTROLLERS_PATH.'memberListController.php');
+            $controller = new MemberListController($db);
+            break;
         case 'comments' : # action=comments
             require_once(CONTROLLERS_PATH.'CommentsController.php');
             $controller = new CommentsController($db);

@@ -1,27 +1,33 @@
-<h1>LIST OF IDEAS</h1>
-<table id="ideas">
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Idea</th>
-        <th>N°idea</th>
-    </tr>
-    </thead>
-    <tbody>
-        <?php for ($i = 0; $i < count($tabIdeasExploration); $i++) { ?>
-            <tr>
-                <td><span class="title"><?php echo $tabIdeasExploration[$i]->getTitle() ?></span></td>
-                <td><span class="text"><?php echo $tabIdeasExploration[$i]->getText() ?></span></td>
-                <td><span class="idIdea"><?php echo $tabIdeasExploration[$i]->getIdIdea() ?></span></td>
-                <td><span class="comments"><button value="<?php echo $tabIdeasExploration[$i]->getIdIdea(); ?>"
-                            <?php echo $idIdea = $tabIdeasExploration[$i]->getIdIdea()?> >Comments</button></td>
-                <td><span class="vote"><button>Vote</button></span></td>
-                <td><span class="Status"><select name="status" id="status">
-                <option value="submitted">submitted</option>
-                <option value="accepted">accepted</option>
-                <option value="refused">refused</option>
-                <option value="closed">closed</option></span></td>
-            </tr>
-        <?php } ?>
-    </tbody>
-</table>
+<div class="container">
+    <div class="row align items-start">
+        <div class="col">
+            <h1>LISTE DES IDEES</h1>
+            <form action="?action=exploration" method="post">
+                <?php echo $notificationVote ?>
+                <table id="ideas">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Idea</th>
+                        <th><input type="submit" name="form_vote" value="Vote"></th>
+                        <th><input type="submit" name="form_comments" value="Comments"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php for ($i = 0; $i < count($tabIdeasExploration); $i++) { ?>
+                        <tr>
+                            <td><span class="title"><?php echo $tabIdeasExploration[$i]->getTitle() ?></span></td>
+                            <td><span class="text"><?php echo $tabIdeasExploration[$i]->getText() ?></span></td>
+                            <td><input type="radio" name="vote"
+                                       value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>"></td>
+                            <td><input type="radio" name="comments"
+                                       value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
