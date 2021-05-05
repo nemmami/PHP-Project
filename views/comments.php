@@ -6,9 +6,8 @@
         <?php if ($tabComments[$i]->getIdMember() == $_SESSION['member'] && $tabComments[$i]->getIsDeleted() == 0) { ?>
             <?php echo $tabComments[$i]->getText() ?>
             <form action="?action=comments" method="post">
-                <input type="radio" name="delete"
-                       value="<?php echo $tabComments[$i]->getIdComment() ?>">
-                <button type="submit" class="btn btn-danger" name="form_delete">Delete</button>
+                <button type="submit" class="btn btn-danger" name="form_delete"
+                        value="<?php echo $tabComments[$i]->getIdComment() ?>">Delete</button>
             </form>
         <?php } elseif ($tabComments[$i]->getIdMember() != $_SESSION['member'] && $tabComments[$i]->getIsDeleted() == 0) { ?>
             <?php echo $tabComments[$i]->getText() ?>

@@ -46,6 +46,15 @@
     margin-left: 0px;
 }
 
+#btn_yellow{
+    background-color: forestgreen;
+}
+
+.filter {
+    display: inline;
+    vertical-align: top;
+}
+
 main {
     min-height: calc(100vh - 132px - 78px);
 }

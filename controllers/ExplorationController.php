@@ -33,8 +33,6 @@ class ExplorationController{
             }
         }
 
-        $tabIdeasExploration = $this->_db->get_idea_exploration($_SESSION['member']);
-
         if(!empty($_POST['form_comments'])) {
             if(empty($_POST['comments'])) {
                 $notificationVote = 'Please select an idea';
@@ -44,6 +42,45 @@ class ExplorationController{
                 header("Location: index.php?action=comments");
                 die();
             }
+        }
+
+        if(!empty($_POST['form_tab'])) {
+            if($_POST['form_tab'] == 'top_3') {
+                $tabIdeasExploration = $this->_db->get_idea_exploration_limit_3($_SESSION['member']);
+            } elseif ($_POST['form_tab'] == 'top_10') {
+                $tabIdeasExploration = $this->_db->get_idea_exploration_limit_10($_SESSION['member']);
+            } else {
+                $tabIdeasExploration = $this->_db->get_idea_exploration($_SESSION['member']);
+            }
+        }
+        else {
+            $tabIdeasExploration = $this->_db->get_idea_exploration($_SESSION['member']);
+        }
+
+        $filter = 'submitted';
+        $notificationFilter = 'The table show submitted ideas';
+        if(!empty($_POST['form_filter'])) {
+            if($_POST['form_filter'] == 'submitted') {
+                $filter = 'submitted';
+                $tabIdeasExploration = $this->_db->get_idea_filter($_SESSION['member'], $filter);
+            } elseif ($_POST['form_filter'] == 'closed') {
+                $filter = 'closed';
+                $tabIdeasExploration = $this->_db->get_idea_filter($_SESSION['member'], $filter);
+                $notificationFilter = 'The table show closed ideas';
+            } elseif ($_POST['form_filter'] == 'openned') {
+                $filter = 'openned';
+                $tabIdeasExploration = $this->_db->get_idea_filter($_SESSION['member'], $filter);
+                $notificationFilter = 'The table show openned ideas';
+            } else {
+                $filter = 'refused';
+                $tabIdeasExploration = $this->_db->get_idea_filter($_SESSION['member'], $filter);
+                $notificationFilter = 'The table show refused ideas';
+            }
+        }
+        else {
+            $filter = 'submitted';
+            $tabIdeasExploration = $this->_db->get_idea_filter($_SESSION['member'], $filter);
+            $notificationFilter = 'The table show submitted ideas';
         }
 
         include (VIEWS_PATH."exploration.php");

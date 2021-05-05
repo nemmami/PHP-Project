@@ -116,9 +116,49 @@ class Db
     }
 
     public function get_idea_exploration($id_member) {
-        $query = 'SELECT * FROM ideas WHERE id_member!=:id_member';
+        $query = 'SELECT * FROM ideas WHERE id_member!=:id_member ORDER BY number_of_vote DESC';
         $ps = $this->_connection->prepare($query);
         $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
+                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
+        }
+        return $tableau;
+    }
+
+    public function get_idea_exploration_limit_3($id_member) {
+        $query = 'SELECT * FROM ideas WHERE id_member!=:id_member ORDER BY number_of_vote DESC LIMIT 3';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
+                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
+        }
+        return $tableau;
+    }
+
+    public function get_idea_exploration_limit_10($id_member) {
+        $query = 'SELECT * FROM ideas WHERE id_member!=:id_member ORDER BY number_of_vote DESC LIMIT 10';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
+                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
+        }
+        return $tableau;
+    }
+
+    public function get_idea_filter($id_member, $status) {
+        $query = 'SELECT * FROM ideas WHERE id_member!=:id_member AND status=:status ORDER BY number_of_vote DESC';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->bindValue(':status',$status);
         $ps->execute();
         $tableau = array();
         while ($row = $ps->fetch()) {

@@ -21,11 +21,11 @@ class CommentsController {
         }
 
         $notificationDelete = '';
-        if(!empty($_POST['delete'])) {
-            $comment = $this->_db->get_comments($_POST['delete']);
-            $comment[0]->markDeleted($_POST['delete']);
+        if(!empty($_POST['form_delete'])) {
+            $comment = $this->_db->get_comments($_POST['form_delete']);
+            $comment[0]->markDeleted($_POST['form_delete']);
             //var_dump($comment);
-            $this->_db->update_comments($_POST['delete']);
+            $this->_db->update_comments($_POST['form_delete']);
         }
 
         $tabComments = $this->_db->get_comments_of_an_idea($_SESSION['idea']);
