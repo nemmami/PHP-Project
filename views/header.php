@@ -16,31 +16,63 @@
         <title>Big Spicy</title>
         <br>
         <?php if (!empty($_SESSION['authentifie'])) { ?>
-            <a href="index.php?action=default">
-                <img src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
-            </a>
-            <strong class="slogan">High in spices but small in price</strong>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=default">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=exploration">Exploration</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=logout">Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <br>
-            <hr>
+            <?php if ($_SESSION['IsAdmin'] == 1) { ?>
+                <a href="index.php?action=default">
+                    <img src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
+                </a>
+                <strong class="slogan">High in spices but small in price</strong>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?action=default">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?action=exploration">Exploration</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?action=logout">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?action=explorationAdmin">ExplorationAdmin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?action=memberList">Members</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <br>
+                <hr>
+            <?php } else { ?>
+                <a href="index.php?action=default">
+                    <img src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
+                </a>
+                <strong class="slogan">High in spices but small in price</strong>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?action=default">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?action=exploration">Exploration</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?action=logout">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <br>
+                <hr>
+            <?php } ?>
         <?php } else { ?>
             <img src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
             <strong class="slogan">High in spices but small in price</strong>
             <br>
             <hr>
         <?php } ?>
+
+
     </header>

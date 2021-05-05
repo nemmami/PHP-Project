@@ -235,6 +235,18 @@ class Db
         $ps->execute();
     }
 
+    public function get_members_list() {
+        $query = 'SELECT * FROM members';
+        $ps = $this->_connection->prepare($query);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Member($row->id_member,$row->username,$row->email_adress,$row->password,$row->is_admin,
+                $row->is_banned);
+        }
+        return $tableau;
+    }
+
     public function get_comments_of_an_idea($id_idea) {
         $query = 'SELECT * FROM comments WHERE id_idea=:id_idea';
         $ps = $this->_connection->prepare($query);

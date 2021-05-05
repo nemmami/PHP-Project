@@ -9,7 +9,7 @@ class ExplorationControllerAdminController{
     }
 
     public function run() {
-        # If someone writes ?action=exploration without going through the login 
+        # If someone writes ?action=explorationAdmin without going through the login 
         if (empty($_SESSION['authentifie'])) {
             header("Location: index.php?action=home"); # HTTP redirection to the login action
             die();

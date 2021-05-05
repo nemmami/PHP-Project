@@ -22,15 +22,6 @@
         $_GET['action'] = 'default';
     }
 
-    if (empty($_SESSION['authentifie'])){
-        $actionloginadmin='login';
-        $libelleloginadmin='Login';
-    } else {
-        $actionloginadmin='admin';
-        $libelleloginadmin='Zone Admin';
-    }
-
-
 
     # Switch case on the action requested by the GET 'action' variable specified in the URL
     # index.php?action=...
@@ -47,6 +38,14 @@
         case 'exploration' : # action=exploration
             require_once(CONTROLLERS_PATH.'ExplorationController.php');
             $controller = new ExplorationController($db);
+            break;
+        case 'explorationAdmin' : # action=explorationAdmin
+            require_once(CONTROLLERS_PATH.'ExplorationAdminController.php');
+            $controller = new ExplorationAdminController($db);
+            break;
+        case 'memberList' : # action=exploration
+            require_once(CONTROLLERS_PATH.'memberListController.php');
+            $controller = new MemberListController($db);
             break;
         case 'comments' : # action=comments
             require_once(CONTROLLERS_PATH.'CommentsController.php');

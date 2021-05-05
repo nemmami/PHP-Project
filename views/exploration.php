@@ -14,10 +14,18 @@
                     <br>
                     <form action="?action=exploration" method="post">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter" value="submitted">Submitted Idea</button>
-                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter" value="openned">Openned Idea</button>
-                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter" value="closed">Closed Idea</button>
-                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter" value="refused">Refused Idea</button>
+                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter"
+                                    value="submitted">Submitted Idea
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter"
+                                    value="openned">Openned Idea
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter"
+                                    value="closed">Closed Idea
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter"
+                                    value="refused">Refused Idea
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -65,7 +73,7 @@
                         <br>
                         <br>
                     </form>
-                <?php } elseif($filter == 'openned') { ?>
+                <?php } elseif ($filter == 'openned') { ?>
                     <?php echo $notificationFilter ?>
                     <form action="?action=exploration" method="post">
                         <?php echo $notificationVote ?>
@@ -108,7 +116,7 @@
                         <br>
                         <br>
                     </form>
-                <?php } elseif($filter == 'closed') { ?>
+                <?php } elseif ($filter == 'closed') { ?>
                     <?php echo $notificationFilter ?>
                     <form action="?action=exploration" method="post">
                         <?php echo $notificationVote ?>

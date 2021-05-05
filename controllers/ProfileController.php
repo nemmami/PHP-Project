@@ -17,7 +17,7 @@ class ProfileController {
 
         $notificationIdea = "";
         $notificationComments = "";
-
+        //var_dump($_SESSION['IsAdmin']);
 
         $tabVote = $this->_db->get_vote($_SESSION['member']);
         $tabVoteIdea = array();
