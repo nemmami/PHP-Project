@@ -31,7 +31,6 @@ class HomeController {
             $member = $this->_db->get_member($_POST['email']);
             $_SESSION['member'] = $member->html_IdMember();
             $_SESSION['IsAdmin'] = $member->html_IsAdmin();
-            //var_dump($member);
             # HTTP redirection to request the exploration page
             header("Location: index.php?action=default");
             die();
@@ -39,15 +38,19 @@ class HomeController {
 
         $notificationRegister = "";
         if (!empty($_POST['form_register'])) {
+            # The user need to complete the form
             if (empty($_POST['username']) && empty($_POST['email']) && empty($_POST['password'])) {
                 $notificationRegister = 'Please enter a username, email and password';
             } elseif (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])) {
                 $notificationRegister = 'Please complete all gaps.';
             } elseif ($this->_db->username_exists($_POST['username'])) {
+                # The username already exist
                 $notificationRegister = 'The username already exists, choose another.';
             } elseif($this->_db->email_exists($_POST['email'])){
+                # The username already exist
                 $notificationRegister = 'This email is already in used.';
             } else {
+                # The user has successfully registered
                 $this->_db->insert_membre($_POST['username'], $_POST['email'] ,password_hash($_POST['password'], PASSWORD_BCRYPT));
                 $notificationRegister = 'The user has been added';
             }

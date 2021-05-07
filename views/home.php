@@ -1,4 +1,5 @@
 <main>
+    <!-- form to login -->
     <form class="table" action="?action=home" method="post" id="login">
         <h5>LOGIN</h5>
         <div class="form-floating mb-3">
@@ -9,12 +10,12 @@
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
             <label for="floatingPassword">Password</label>
             <br>
-            <input class="btn btn-primary" type="submit" value="Login" name="form_login">
+            <input class="btn btn-dark" type="submit" value="Login" name="form_login">
             <?php echo $notificationLogin; ?>
         </div>
     </form>
 
-
+    <!-- form to register -->
     <form class="table" action="index.php?action=home" method="post" id="register">
         <h5>REGISTER</h5>
         <div class="form-floating mb-3">
@@ -29,7 +30,7 @@
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
             <label for="floatingPassword">Password</label>
             <br>
-            <input class="btn btn-primary" type="submit" value="Register" name="form_register">
+            <input class="btn btn-dark" type="submit" value="Register" name="form_register">
             <?php echo $notificationRegister; ?>
         </div>
     </form>

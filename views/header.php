@@ -15,7 +15,9 @@
     <header>
         <title>Big Spicy</title>
         <br>
+        <!-- the header when the user is logged -->
         <?php if (!empty($_SESSION['authentifie'])) { ?>
+            <!-- the header when the user is an admin -->
             <?php if ($_SESSION['IsAdmin'] == 1) { ?>
                 <a href="index.php?action=default">
                     <img src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
@@ -44,6 +46,7 @@
                 </nav>
                 <br>
                 <hr>
+                <!-- the header when the user is not an admin -->
             <?php } else { ?>
                 <a href="index.php?action=default">
                     <img src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
@@ -67,12 +70,11 @@
                 <br>
                 <hr>
             <?php } ?>
+            <!-- the header when the user is not logged -->
         <?php } else { ?>
             <img src="<?php echo VIEWS_PATH ?>images/logo-removebg-preview.png" alt="logo" class="logo">
             <strong class="slogan">High in spices but small in price</strong>
             <br>
             <hr>
         <?php } ?>
-
-
     </header>
