@@ -120,7 +120,7 @@ class Db
         $tableau = array();
         while ($row = $ps->fetch()) {
             $tableau[] = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
-                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
+                $row->opened_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
         }
         return $tableau;
     }
@@ -133,7 +133,7 @@ class Db
         $tableau = array();
         while ($row = $ps->fetch()) {
             $tableau[] = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
-                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
+                $row->opened_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
         }
         return $tableau;
     }
@@ -146,7 +146,7 @@ class Db
         $tableau = array();
         while ($row = $ps->fetch()) {
             $tableau[] = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
-                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
+                $row->opened_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
         }
         return $tableau;
     }
@@ -159,7 +159,7 @@ class Db
         $tableau = array();
         while ($row = $ps->fetch()) {
             $tableau[] = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
-                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
+                $row->opened_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
         }
         return $tableau;
     }
@@ -173,7 +173,7 @@ class Db
         $tableau = array();
         while ($row = $ps->fetch()) {
             $tableau[] = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
-                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
+                $row->opened_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
         }
         return $tableau;
     }
@@ -210,6 +210,8 @@ class Db
         $tableau = array();
         while ($row = $ps->fetch()) {
             $tableau[] = new Vote($row->id_member,$row->id_idea);
+            $idea = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
+                $row->opened_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
         }
         return $tableau;
     }
@@ -335,11 +337,11 @@ class Db
             $ps->bindValue('submitted',$status);
             $ps->bindValue(current_timestamp(),$submitted_date);
             $ps->execute();   
-        }elseif ($value == "accepted") {
-            $query = "UPDATE ideas SET status= 'accepted', accepted_date=current_timestamp() WHERE id_idea=$id_idea";
+        }elseif ($value == "opened") {
+            $query = "UPDATE ideas SET status= 'opened', 'opened_date=current_timestamp() WHERE id_idea=$id_idea";
             $ps = $this->_connection->prepare($query);
-            $ps->bindValue('accepted',$status);
-            $ps->bindValue(current_timestamp(),$accepted_date);
+            $ps->bindValue('opened',$status);
+            $ps->bindValue(current_timestamp(),$opened_date);
             $ps->execute();
         }elseif($value == "refused"){
             $query = "UPDATE ideas SET status= 'refused', refused_date=current_timestamp() WHERE id_idea=$id_idea";
