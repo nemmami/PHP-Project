@@ -109,8 +109,7 @@ class Idea
         $this->_number_of_vote = $nbr;
     }
 
-    public function html_IdIdea()
-    {
+    public function html_IdIdea(){
         return htmlspecialchars($this->_id_idea);
     }
 }

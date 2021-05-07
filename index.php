@@ -40,7 +40,7 @@
             $controller = new ExplorationController($db);
             break;
         case 'explorationAdmin' : # action=explorationAdmin
-            require_once(CONTROLLERS_PATH.'ExplorationAdminController.php');
+            require_once(CONTROLLERS_PATH.'ExplorationadminController.php');
             $controller = new ExplorationAdminController($db);
             break;
         case 'memberList' : # action=exploration
