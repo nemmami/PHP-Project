@@ -7,8 +7,8 @@ class Db
     private function __construct()
     {
         try {
-            //$this->_connection = new PDO('mysql:host=localhost;port=3306;dbname=webproject;charset=utf8','root','');
-            $this->_connection = new PDO('mysql:host=localhost;port=3307;dbname=webproject;charset=utf8','root','');
+            $this->_connection = new PDO('mysql:host=localhost;port=3306;dbname=webproject;charset=utf8','root','');
+            //$this->_connection = new PDO('mysql:host=localhost;port=3307;dbname=webproject;charset=utf8','root','');
             $this->_connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$this->_connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
         } 
@@ -38,18 +38,21 @@ class Db
         return password_verify($password, $hash);
     }
 
-    public function valide_email($email) {
-        if (preg_match("/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i", $email)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function get_member ($email_adress) {
         $query = 'SELECT * FROM members WHERE email_adress=:email_adress';
         $ps = $this->_connection->prepare($query);
         $ps->bindValue(':email_adress',$email_adress);
+        $ps->execute();
+        while ($row = $ps->fetch()) {
+            $membre = new Member($row->id_member, $row->username, $row->email_adress, $row->password, $row->is_admin, $row->is_banned);
+        }
+        return $membre;
+    }
+
+    public function get_member_id($id_member) {
+        $query = 'SELECT * FROM members WHERE id_member=:id_member';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
         $ps->execute();
         while ($row = $ps->fetch()) {
             $membre = new Member($row->id_member, $row->username, $row->email_adress, $row->password, $row->is_admin, $row->is_banned);

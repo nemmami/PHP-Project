@@ -46,13 +46,33 @@
     margin-left: 0px;
 }
 
-#btn_yellow{
-    background-color: forestgreen;
+.main_idea {
+    text-align: center;
 }
 
 .filter {
     display: inline;
     vertical-align: top;
+}
+
+#text_idea {
+    font-size: 25px;
+    font-style: italic;
+}
+
+#text_comment {
+    font-size: 20px;
+    font-style: italic;
+}
+
+#usenrmae_idea {
+    color : orangered;
+}
+
+.tableComments {
+    text-align: center;
+    width: 700px;
+    margin-left: 421px;
 }
 
 main {

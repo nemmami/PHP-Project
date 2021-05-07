@@ -2,7 +2,8 @@
     <div class="container">
         <div class="row align items-start">
             <div class="col">
-                <h1>AJOUT D'IDEE</h1>
+                <!-- form to add an idea -->
+                <h1>ADD AN IDEA</h1>
                 <form class="" action="?action=default" method="post" id="addIdea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="title" name="title">
@@ -13,13 +14,14 @@
                               style="height: 100px"></textarea>
                         <label for="floatingTextarea2">Text</label>
                         <br>
-                        <input class="btn btn-primary" type="submit" value="Add Idea" name="form_ajout">
+                        <input class="btn btn-secondary" type="submit" value="Add Idea" name="form_ajout">
                         <?php echo $notificationIdea ?>
                     </div>
                 </form>
             </div>
 
             <div class="col">
+                <!-- the user's ideas table -->
                 <h1>MY IDEAS</h1>
                 <form action="?action=default" method="post">
                     <?php echo $notificationComments ?>
@@ -49,6 +51,7 @@
             </div>
 
             <div class="col">
+                <!-- the user's votes table -->
                 <h1>MY VOTES</h1>
                 <table id="ideas">
                     <thead>
@@ -73,6 +76,7 @@
             </div>
 
             <div class="col">
+                <!-- the user's comments table -->
                 <h1>MY COMMENTS</h1>
                 <form action="?action=default" method="post">
                     <?php echo $notificationComments ?>
