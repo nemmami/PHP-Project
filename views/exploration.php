@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row align items-start">
             <div class="explo">
-                <h1>LISTE DES IDEES</h1>
+                <h1>LIST OF IDEAS</h1>
                 <div class="filter">
                     <form action="?action=exploration" method="post">
                         <div class="btn-group" role="group" aria-label="Basic example">
