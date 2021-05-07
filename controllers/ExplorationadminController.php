@@ -67,10 +67,10 @@ class ExplorationadminController{
                 $filter = 'closed';
                 $tabIdeasExploration = $this->_db->get_idea_filter($_SESSION['member'], $filter);
                 $notificationFilter = 'The table show closed ideas';
-            } elseif ($_POST['form_filter'] == 'openned') {
-                $filter = 'openned';
+            } elseif ($_POST['form_filter'] == 'opened') {
+                $filter = 'opened';
                 $tabIdeasExploration = $this->_db->get_idea_filter($_SESSION['member'], $filter);
-                $notificationFilter = 'The table show openned ideas';
+                $notificationFilter = 'The table show opened ideas';
             } else {
                 $filter = 'refused';
                 $tabIdeasExploration = $this->_db->get_idea_filter($_SESSION['member'], $filter);

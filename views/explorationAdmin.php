@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row align items-start">
             <div class="explo">
-                <h1>LISTE DES IDEES</h1>
+                <h1>LIST OF IDEAS</h1>
                 <div class="filter">
                     <form action="?action=explorationAdmin" method="post">
                         <div class="btn-group" role="group" aria-label="Basic example">
@@ -18,7 +18,7 @@
                                     value="submitted">Submitted Idea
                             </button>
                             <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter"
-                                    value="openned">Openned Idea
+                                    value="opened">Opened Idea
                             </button>
                             <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter"
                                     value="closed">Closed Idea
@@ -40,7 +40,7 @@
                                 <th>Number of Votes</th>
                                 <th>Title</th>
                                 <th>Idea</th>
-                                <th><input type="submit" name="form_accept" value="accept"></th>
+                                <th><input type="submit" name="form_open" value="open"></th>
                                 <th><input type="submit" name="form_refuse" value="refuse"></th>
                             </tr>
                             </thead>
@@ -58,9 +58,9 @@
                                             <span class="text"><?php echo $tabIdeasExploration[$i]->getText() ?></span>
                                         </td>
                                         <td>
-                                            <input type="radio" name="accept"
+                                            <input type="radio" name="open"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <?php $tabIdeasExploration[$i]->update_status("accepted", $tabIdeasExploration[$i]->getIdIdea()) ?>
+                                                   <?php $tabIdeasExploration[$i]->update_status("opened", $tabIdeasExploration[$i]->getIdIdea()) ?>
                                         </td>
                                         <td>
                                             <input type="radio" name="refuse"
@@ -75,7 +75,7 @@
                         <br>
                         <br>
                     </form>
-                <?php } elseif ($filter == 'openned') { ?>
+                <?php } elseif ($filter == 'opened') { ?>
                     <?php echo $notificationFilter ?>
                     <form action="?action=explorationAdmin" method="post">
                         <?php echo $notificationVote ?>
@@ -91,7 +91,7 @@
                             </thead>
                             <tbody>
                             <?php for ($i = 0; $i < count($tabIdeasExploration); $i++) { ?>
-                                <?php if ($tabIdeasExploration[$i]->getStatus() == 'openned') { ?>
+                                <?php if ($tabIdeasExploration[$i]->getStatus() == 'opened') { ?>
                                     <tr>
                                         <td>
                                             <span class="number_of_vote"><?php echo $tabIdeasExploration[$i]->getNumberOfVotes() ?></span>
