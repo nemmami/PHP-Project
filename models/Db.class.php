@@ -185,7 +185,7 @@ class Db
         $ps->execute();
         while ($row = $ps->fetch()) {
             $idea = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
-                $row->accepted_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
+                $row->opened_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
         }
         return $idea;
     }
@@ -210,8 +210,6 @@ class Db
         $tableau = array();
         while ($row = $ps->fetch()) {
             $tableau[] = new Vote($row->id_member,$row->id_idea);
-            $idea = new Idea($row->id_idea,$row->id_member,$row->title,$row->text,$row->submitted_date,
-                $row->opened_date,$row->refused_date,$row->closed_date,$row->status,$row->number_of_vote);
         }
         return $tableau;
     }
