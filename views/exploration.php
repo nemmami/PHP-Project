@@ -16,7 +16,7 @@
                     <form action="?action=exploration" method="post">
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button type="submit" class="btn btn-secondary" name="form_filter" value="submitted">Submitted Idea</button>
-                            <button type="submit" class="btn btn-secondary" name="form_filter" value="openned">Openned Idea</button>
+                            <button type="submit" class="btn btn-secondary" name="form_filter" value="opened">Opened Idea</button>
                             <button type="submit" class="btn btn-secondary" name="form_filter" value="closed">Closed Idea</button>
                             <button type="submit" class="btn btn-secondary" name="form_filter" value="refused">Refused Idea</button>
                         </div>
