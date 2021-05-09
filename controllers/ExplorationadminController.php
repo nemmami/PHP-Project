@@ -9,41 +9,65 @@ class ExplorationadminController{
     }
 
     public function run() {
-        # If someone writes ?action=explorationadmin without going through the login 
+        # If someone writes ?action=explorationAdmin without going through the login 
         if (empty($_SESSION['authentifie'])) {
             header("Location: index.php?action=home"); # HTTP redirection to the login action
             die();
         }
 
-        $notificationVote = '';
-        if (!empty($_POST['form_vote'])) {
-            if(empty($_POST['vote'])) {
-                $notificationVote = 'Please select an idea';
-            } elseif ($this->_db->possible_vote($_SESSION['member'], $_POST['vote']) == 1) {
-                $notificationVote = 'You have already voted for this idea';
+        //$idea = $this->_db->get_idea($_SESSION['idea']);
+
+        # Open Idea system management
+        $notificationSelect = '';
+        if (!empty($_POST['form_open'])) {
+            if(empty($_POST['open'])) {
+                $notificationSelect = 'Please select an idea to open it';
             } else {
-                $this->_db->insert_vote($_SESSION['member'], $_POST['vote']);
-                $nbr = $this->_db->get_number_of_vote($_POST['vote']);
-                $idea = $this->_db->get_idea($_POST['vote']);
-                //var_dump($idea);
-                $idea->setNumberOfVotes($nbr);
-                $this->_db->update_idea($_POST['vote'],$nbr);
-                //var_dump($idea);
-                $notificationVote = 'Your vote has been added';
+                $status = "opened";
+                //$idea = $this->_db->get_idea($_SESSION['idea']);
+                //$id_idea = $idea.getIdIdea();
+                $this->_db->update_status($status, $_SESSION['idea']);
+                $notificationSelect = 'The idea\'s status has been updated';
             }
         }
 
+        # Close Idea system management
+        if (!empty($_POST['form_close'])) {
+            if(empty($_POST['close'])) {
+                $notificationSelect = 'Please select an idea to close it';
+            } else {
+                $status = "closed";
+                $this->_db->update_status($status, $_SESSION['idea']);
+                $notificationSelect = 'The idea\'s status has been updated';
+            }
+        }
+
+        # Refuse Idea system management
+        if (!empty($_POST['form_refuse'])) {
+            if(empty($_POST['refuse'])) {
+                $notificationSelect = 'Please select an idea to refuse it';
+            } else {
+                $status = "refused";
+                //$idea = $this->_db->get_idea($_SESSION['idea']);
+                //$id_idea = $idea.getIdIdea();
+                $this->_db->update_status($status, $_SESSION['idea']);
+                $notificationSelect = 'The idea\'s status has been updated';
+            }
+        }
+
+
+        # Redirection to the comment page
         if(!empty($_POST['form_comments'])) {
             if(empty($_POST['comments'])) {
-                $notificationVote = 'Please select an idea';
+                $notificationSelect = 'Please select an idea';
             } else {
                 $_SESSION['idea'] = $_POST['comments'];
-                //var_dump($_SESSION['idea']);
                 header("Location: index.php?action=comments");
                 die();
             }
         }
 
+        # Limit table management
         if(!empty($_POST['form_tab'])) {
             if($_POST['form_tab'] == 'top_3') {
                 $tabIdeasExploration = $this->_db->get_idea_exploration_limit_3($_SESSION['member']);
@@ -57,6 +81,7 @@ class ExplorationadminController{
             $tabIdeasExploration = $this->_db->get_idea_exploration($_SESSION['member']);
         }
 
+        # Filter table management
         $filter = 'submitted';
         $notificationFilter = 'The table show submitted ideas';
         if(!empty($_POST['form_filter'])) {
@@ -70,7 +95,7 @@ class ExplorationadminController{
             } elseif ($_POST['form_filter'] == 'opened') {
                 $filter = 'opened';
                 $tabIdeasExploration = $this->_db->get_idea_filter($_SESSION['member'], $filter);
-                $notificationFilter = 'The table show opened ideas';
+                $notificationFilter = 'The table show openned ideas';
             } else {
                 $filter = 'refused';
                 $tabIdeasExploration = $this->_db->get_idea_filter($_SESSION['member'], $filter);

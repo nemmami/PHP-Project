@@ -198,6 +198,36 @@ class Db
         $ps->execute();
     }
 
+    public function update_status($status, $id_idea){ 
+        //date_default_timezone_set('UTC');
+        $timestamp = date('Y-m-d H:i:s');
+        if($status == 'submitted'){
+            $query = "UPDATE ideas SET status= 'submitted', submitted_date=current_timestamp() WHERE id_idea=:id_idea";
+            $ps = $this->_connection->prepare($query);
+            $ps->bindValue('submitted',$status);
+            $ps->bindValue(current_timestamp(),$submitted_date);
+            $ps->execute();   
+        }elseif ($status == "opened") {
+            $query = "UPDATE ideas SET status= 'opened', 'opened_date=current_timestamp() WHERE id_idea=:id_idea";
+            $ps = $this->_connection->prepare($query);
+            $ps->bindValue(':status',$status);
+            $ps->bindValue(':opened_date',$timestamp);
+            $ps->execute();
+        }elseif($status == "refused"){
+            $query = "UPDATE ideas SET status= 'refused', refused_date=current_timestamp() WHERE id_idea=$id_idea";
+            $ps = $this->_connection->prepare($query);
+            $ps->bindValue('refused',$status);
+            $ps->bindValue(current_timestamp(),$refused_date);
+            $ps->execute();
+        }else{
+            $query = "UPDATE ideas SET status= 'closed', closed_date=current_timestamp() WHERE id_idea=$id_idea";
+            $ps = $this->_connection->prepare($query);
+            $ps->bindValue('closed',$status);
+            $ps->bindValue(current_timestamp(),$closed_date);
+            $ps->execute();
+        }
+    }
+    
     # -------------------------------------
     # Vote methods
     # -------------------------------------
@@ -328,32 +358,5 @@ class Db
         return $tableau;
     }
 
-    public function update_status($status, $id_idea){ 
-        if($status == 'submitted'){
-            $query = "UPDATE ideas SET status= 'submitted', submitted_date=current_timestamp() WHERE id_idea=$id_idea";
-            $ps = $this->_connection->prepare($query);
-            $ps->bindValue('submitted',$status);
-            $ps->bindValue(current_timestamp(),$submitted_date);
-            $ps->execute();   
-        }elseif ($value == "opened") {
-            $query = "UPDATE ideas SET status= 'opened', 'opened_date=current_timestamp() WHERE id_idea=$id_idea";
-            $ps = $this->_connection->prepare($query);
-            $ps->bindValue('opened',$status);
-            $ps->bindValue(current_timestamp(),$opened_date);
-            $ps->execute();
-        }elseif($value == "refused"){
-            $query = "UPDATE ideas SET status= 'refused', refused_date=current_timestamp() WHERE id_idea=$id_idea";
-            $ps = $this->_connection->prepare($query);
-            $ps->bindValue('refused',$status);
-            $ps->bindValue(current_timestamp(),$refused_date);
-            $ps->execute();
-        }else{
-            $query = "UPDATE ideas SET status= 'closed', closed_date=current_timestamp() WHERE id_idea=$id_idea";
-            $ps = $this->_connection->prepare($query);
-            $ps->bindValue('closed',$status);
-            $ps->bindValue(current_timestamp(),$closed_date);
-            $ps->execute();
-        }
-    }
     
 }
