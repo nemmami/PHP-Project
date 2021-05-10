@@ -33,7 +33,7 @@
                 <?php if ($filter == 'submitted') { ?>
                     <?php echo $notificationFilter ?>
                     <form action="?action=explorationAdmin" method="post">
-                        <?php echo $notificationVote ?>
+                        <?php echo $notificationSelect ?>
                         <table id="ideas">
                             <thead>
                             <tr>
@@ -60,12 +60,12 @@
                                         <td>
                                             <input type="radio" name="open"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <?php $tabIdeasExploration[$i]->update_status("opened", $tabIdeasExploration[$i]->getIdIdea()) ?>
+                                                   <!--<?php $tabIdeasExploration[$i]->update_status("opened", value) ?>-->
                                         </td>
                                         <td>
                                             <input type="radio" name="refuse"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <?php $tabIdeasExploration[$i]->update_status("refused", $tabIdeasExploration[$i]->getIdIdea()) ?>
+                                                   <!--<?php $tabIdeasExploration[$i]->update_status("refused", value) ?>-->
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -78,7 +78,7 @@
                 <?php } elseif ($filter == 'opened') { ?>
                     <?php echo $notificationFilter ?>
                     <form action="?action=explorationAdmin" method="post">
-                        <?php echo $notificationVote ?>
+                        <?php echo $notificationSelect ?>
                         <table id="ideas">
                             <thead>
                             <tr>
@@ -105,12 +105,12 @@
                                         <td>
                                             <input type="radio" name="close"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <?php $tabIdeasExploration[$i]->update_status("closed", $tabIdeasExploration[$i]->getIdIdea()) ?>
+                                                   <!--<?php $tabIdeasExploration[$i]->update_status("closed", $tabIdeasExploration[$i]->getIdIdea()) ?>-->
                                         </td>
                                         <td>
                                             <input type="radio" name="refuse"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <?php $tabIdeasExploration[$i]->update_status("refused", $tabIdeasExploration[$i]->getIdIdea()) ?>
+                                                   <!--<?php $tabIdeasExploration[$i]->update_status("refused", $tabIdeasExploration[$i]->getIdIdea()) ?>-->
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -123,7 +123,7 @@
                 <?php } elseif ($filter == 'closed') { ?>
                     <?php echo $notificationFilter ?>
                     <form action="?action=explorationAdmin" method="post">
-                        <?php echo $notificationVote ?>
+                        <?php echo $notificationSelect ?>
                         <table id="ideas">
                             <thead>
                             <tr>
@@ -156,7 +156,7 @@
                 <?php } else { ?>
                     <?php echo $notificationFilter ?>
                     <form action="?action=explorationAdmin" method="post">
-                        <?php echo $notificationVote ?>
+                        <?php echo $notificationSelect ?>
                         <table id="ideas">
                             <thead>
                             <tr>
@@ -183,12 +183,12 @@
                                         <td>
                                             <input type="radio" name="open"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <?php $tabIdeasExploration[$i]->update_status("opened", $tabIdeasExploration[$i]->getIdIdea()) ?>           
+                                                   <!--<?php $tabIdeasExploration[$i]->update_status("opened", $tabIdeasExploration[$i]->getIdIdea()) ?> -->          
                                         </td>
                                         <td>
                                             <input type="radio" name="close"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <?php $tabIdeasExploration[$i]->update_status("closed", $tabIdeasExploration[$i]->getIdIdea()) ?>           
+                                                   <!--<?php $tabIdeasExploration[$i]->update_status("closed", $tabIdeasExploration[$i]->getIdIdea()) ?>-->      
                                         </td>
                                     </tr>
                                 <?php } ?>
