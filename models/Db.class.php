@@ -198,36 +198,60 @@ class Db
         $ps->execute();
     }
 
-    public function update_status($status, $id_idea){ 
-        //date_default_timezone_set('UTC');
-        $timestamp = date('Y-m-d H:i:s');
+    public function update_status($status, $id_idea, $datetime){ 
         if($status == 'submitted'){
-            $query = "UPDATE ideas SET status= 'submitted', submitted_date=current_timestamp() WHERE id_idea=:id_idea";
+            $query = "UPDATE ideas SET status= 'submitted', submitted_date = datetime WHERE id_idea=:id_idea";
             $ps = $this->_connection->prepare($query);
             $ps->bindValue('submitted',$status);
-            $ps->bindValue(current_timestamp(),$submitted_date);
+            $ps->bindValue(':submitted_date',$datetime);
             $ps->execute();   
         }elseif ($status == "opened") {
-            $query = "UPDATE ideas SET status= 'opened', 'opened_date=current_timestamp() WHERE id_idea=:id_idea";
+            $query = "UPDATE ideas SET status= 'opened', 'opened_date=datetime WHERE id_idea=:id_idea";
             $ps = $this->_connection->prepare($query);
             $ps->bindValue(':status',$status);
-            $ps->bindValue(':opened_date',$timestamp);
+            $ps->bindValue(':opened_date',$datetime);
             $ps->execute();
         }elseif($status == "refused"){
-            $query = "UPDATE ideas SET status= 'refused', refused_date=current_timestamp() WHERE id_idea=$id_idea";
+            $query = "UPDATE ideas SET status= 'refused', refused_date=datetime WHERE id_idea=:id_idea";
             $ps = $this->_connection->prepare($query);
             $ps->bindValue('refused',$status);
-            $ps->bindValue(current_timestamp(),$refused_date);
+            $ps->bindValue(':refused_date',$datetime);
             $ps->execute();
         }else{
-            $query = "UPDATE ideas SET status= 'closed', closed_date=current_timestamp() WHERE id_idea=$id_idea";
+            $query = "UPDATE ideas SET status= 'closed', closed_date=datetime WHERE id_idea=:id_idea";
             $ps = $this->_connection->prepare($query);
             $ps->bindValue('closed',$status);
-            $ps->bindValue(current_timestamp(),$closed_date);
+            $ps->bindValue(':closed_date',$datetime);
             $ps->execute();
         }
     }
-    
+
+    public function idea_open_status($id_idea, $date_time){ 
+        $query = "UPDATE ideas SET status= 'opened', opened_date = :date_time WHERE id_idea=:id_idea";
+        $ps = $this->_connection->prepare($query);
+        //$ps->bindValue(':status','opened');
+        $ps->bindValue(':opened_date',$date_time);
+        $ps->bindValue(':id_idea', $id_idea);
+        $ps->execute();
+    }
+
+    public function idea_close_status($id_idea, $datetime){ 
+        $query = "UPDATE ideas SET status= 'closed', closed_date = :datetime WHERE id_idea=:id_idea";
+        $ps = $this->_connection->prepare($query);
+        //$ps->bindValue(':status','opened');
+        //$ps->bindValue(':closed_date',$datetime);
+        $ps->bindValue(':id_idea', $id_idea);
+        $ps->execute();
+    }
+
+    public function idea_refuse_status($id_idea, $datetime){ 
+        $query = "UPDATE ideas SET status= 'refused', refused_date = :datetime WHERE id_idea=:id_idea";
+        $ps = $this->_connection->prepare($query);
+        //$ps->bindValue(':status','opened');
+        //$ps->bindValue(':refused_date',$datetime);
+        $ps->bindValue(':id_idea', $id_idea);
+        $ps->execute();
+    }
     # -------------------------------------
     # Vote methods
     # -------------------------------------
@@ -330,6 +354,10 @@ class Db
         $ps->execute();
     }
 
+    # -------------------------------------
+    # Member methods
+    # -------------------------------------
+
     public function get_members_list() {
         $query = 'SELECT * FROM members';
         $ps = $this->_connection->prepare($query);
@@ -340,6 +368,44 @@ class Db
                 $row->is_banned);
         }
         return $tableau;
+    }
+
+    public function get_admin_list() {
+        $query = 'SELECT * FROM members WHERE is_admin = 1';
+        $ps = $this->_connection->prepare($query);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Member($row->id_member,$row->username,$row->email_adress,$row->password,$row->is_admin,
+                $row->is_banned);
+        }
+        return $tableau;
+    }
+
+    public function get_simple_members_list() {
+        $query = 'SELECT * FROM members WHERE is_admin = 0';
+        $ps = $this->_connection->prepare($query);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Member($row->id_member,$row->username,$row->email_adress,$row->password,$row->is_admin,
+                $row->is_banned);
+        }
+        return $tableau;
+    }
+
+    public function update_member_to_admin($id_member) {
+        $query = 'UPDATE members SET is_admin=1 WHERE id_member=:id_member';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
+    }
+
+    public function update_admin_to_member($id_member) {
+        $query = 'UPDATE members SET is_admin=0 WHERE id_member=:id_member';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
     }
 
     # Function that performs a SELECT in the members table

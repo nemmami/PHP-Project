@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row align items-start">
             <div class="explo">
-                <h1>LIST OF IDEA</h1>
+                <h1>LIST OF IDEAS</h1>
                 <!-- differents filter for the exploration table -->
                 <div class="filter">
                     <form action="?action=exploration" method="post">

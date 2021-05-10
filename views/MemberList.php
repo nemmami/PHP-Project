@@ -1,24 +1,37 @@
+
 <div id="content">
-    <h1>Admin Page</h1>
+      <h1>Admin Page</h1>
+        <br>
+          <div class="role">
+              <form action="?action=memberList" method="post">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="submit" class="btn btn-secondary" name="form_role" value="Admin">Admin</button>
+                    <button type="submit" class="btn btn-secondary" name="form_role" value="Member">Member</button>
+                </div>
+              </form>
+            </div>
+           
+            <h2>Users List</h2>
+                 <br>
+  
+            <?php echo $notificationRole ?>
+            <br></br>
+            <?php if ($role == 'Admin') { ?>
+              <input type="submit" class="AdminMember" name="form_remo" value="Remove Admin acces to :">
+            <?php } else { ?>
+              <input type="submit" class="AdminMember" name="form_up" value="Give Admin acces to :">
+              <?php } ?>
+            <br>
+
+            <?php foreach($tabMembers as $member){ ?>
+              <?php if ($role == 'Admin') { ?>
+                <?php echo "<li>".$member->html_Username()." - Admin"."</li>"; ?>
+                <input type="radio" name="remove"
+                         value="<?php echo $member->html_IdMember() ?>">
+              <?php } else { ?>
+                <?php echo "<li>".$member->html_Username()." - Member"."</li>"; ?>
+                <input type="radio" name="upgrade"
+                         value="<?php echo $member->html_IdMember() ?>">
+               <?php } ?>
+            <?php } ?>
 </div>
-
-<h2>Users List</h2>
-<?php
-echo "<ul>";
-foreach($tabMembers as $member){
-  if($member->getIsAdmin() == 1){
-    echo "<li>".$member->html_Username()." - Admin"."</li>";
-    //<div class="AdminMember"> <button type="submit" class="AdminMember" name="form_tab" value="Remove Admin acces">All</button></div>
-  }else{
-    echo "<li>".$member->html_Username()." - Member"."</li>";
-  }
-
-    //echo "<ul>";
-    //foreach($member->get_comments() as $comment){
-      //  echo "<li>".$comment->html_text()."</li>";
-    //}
-   // echo "</ul>";
-}
-echo "</ul>";
-?>
-
