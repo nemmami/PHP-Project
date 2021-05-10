@@ -275,7 +275,6 @@ class Db
         $ps->bindValue(':id_member',$id_member);
         $ps->bindValue(':id_idea',$id_idea);
         $ps->execute();
-
         return $ps->rowCount();
     }
 
