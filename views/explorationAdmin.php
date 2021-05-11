@@ -3,6 +3,7 @@
         <div class="row align items-start">
             <div class="explo">
                 <h1>LIST OF IDEAS</h1>
+                <!-- differents filter for the exploration table -->
                 <div class="filter">
                     <form action="?action=explorationAdmin" method="post">
                         <div class="btn-group" role="group" aria-label="Basic example">
@@ -14,18 +15,10 @@
                     <br>
                     <form action="?action=explorationAdmin" method="post">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter"
-                                    value="submitted">Submitted Idea
-                            </button>
-                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter"
-                                    value="opened">Opened Idea
-                            </button>
-                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter"
-                                    value="closed">Closed Idea
-                            </button>
-                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter"
-                                    value="refused">Refused Idea
-                            </button>
+                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter" value="submitted">Submitted Idea</button>
+                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter" value="opened">Opened Idea</button>
+                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter" value="closed">Closed Idea</button>
+                            <button type="submit" class="btn btn-primary" id="btn_yellow" name="form_filter" value="refused">Refused Idea</button>
                         </div>
                     </form>
                 </div>
@@ -60,12 +53,10 @@
                                         <td>
                                             <input type="radio" name="open"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <!--<?php $tabIdeasExploration[$i]->update_status("opened", value) ?>-->
                                         </td>
                                         <td>
                                             <input type="radio" name="refuse"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <!--<?php $tabIdeasExploration[$i]->update_status("refused", value) ?>-->
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -105,12 +96,10 @@
                                         <td>
                                             <input type="radio" name="close"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <!--<?php $tabIdeasExploration[$i]->update_status("closed", $tabIdeasExploration[$i]->getIdIdea()) ?>-->
                                         </td>
                                         <td>
                                             <input type="radio" name="refuse"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <!--<?php $tabIdeasExploration[$i]->update_status("refused", $tabIdeasExploration[$i]->getIdIdea()) ?>-->
                                         </td>
                                     </tr>
                                 <?php } ?>

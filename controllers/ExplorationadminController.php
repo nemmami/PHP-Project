@@ -23,21 +23,24 @@ class ExplorationadminController{
             if(empty($_POST['open'])) {
                 $notificationSelect = 'Please select an idea to open it';
             } else {
-                $status = "opened";
-                //$idea = $this->_db->get_idea($_SESSION['idea']);
-                //$id_idea = $idea.getIdIdea();
-                $this->_db->update_status($status, $_SESSION['idea']);
+                date_default_timezone_set('Europe/Brussels');
+                $datetime = date("Y-m-d H:i:s");
+                $this->_db->idea_open_status($_POST['open'], $datetime);
                 $notificationSelect = 'The idea\'s status has been updated';
             }
         }
+
+				
 
         # Close Idea system management
         if (!empty($_POST['form_close'])) {
             if(empty($_POST['close'])) {
                 $notificationSelect = 'Please select an idea to close it';
             } else {
+                date_default_timezone_set('Europe/Brussels');
+                $datetime = date("Y-m-d H:i:s");
                 $status = "closed";
-                $this->_db->update_status($status, $_SESSION['idea']);
+                $this->_db->update_status($status, $_POST['close'], $datetime);
                 $notificationSelect = 'The idea\'s status has been updated';
             }
         }
@@ -47,10 +50,12 @@ class ExplorationadminController{
             if(empty($_POST['refuse'])) {
                 $notificationSelect = 'Please select an idea to refuse it';
             } else {
+                date_default_timezone_set('Europe/Brussels');
+                $datetime = date("Y-m-d H:i:s");
                 $status = "refused";
                 //$idea = $this->_db->get_idea($_SESSION['idea']);
                 //$id_idea = $idea.getIdIdea();
-                $this->_db->update_status($status, $_SESSION['idea']);
+                $this->_db->update_status($status, $_POST['refuse'], $datetime);
                 $notificationSelect = 'The idea\'s status has been updated';
             }
         }
