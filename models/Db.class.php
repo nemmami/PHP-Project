@@ -30,7 +30,7 @@ class Db
     # Login & Register methods
     # -------------------------------------
 
-    public function valider_utilisateur($email_adress,$password) {
+    public function valide_user($email_adress,$password) {
         $query = 'SELECT password FROM members WHERE email_adress=:email_adress';
         $ps = $this->_connection->prepare($query);
         $ps->bindValue(':email_adress', $email_adress);
@@ -40,6 +40,7 @@ class Db
         $hash = $ps->fetch()->password;
         return password_verify($password, $hash);
     }
+
 
     public function get_member ($email_adress) {
         $query = 'SELECT * FROM members WHERE email_adress=:email_adress';
@@ -227,28 +228,26 @@ class Db
     }
 
     public function idea_open_status($id_idea, $date_time){ 
-        $query = "UPDATE ideas SET status= 'opened', opened_date = :date_time WHERE id_idea=:id_idea";
+        $query = "UPDATE ideas SET status='opened',opened_date=:date_time 
+        WHERE id_idea=:id_idea";
         $ps = $this->_connection->prepare($query);
-        //$ps->bindValue(':status','opened');
-        $ps->bindValue(':opened_date',$date_time);
+        $ps->bindValue(':date_time',$date_time);
         $ps->bindValue(':id_idea', $id_idea);
         $ps->execute();
     }
 
-    public function idea_close_status($id_idea, $datetime){ 
-        $query = "UPDATE ideas SET status= 'closed', closed_date = :datetime WHERE id_idea=:id_idea";
+    public function idea_close_status($id_idea, $date_time){ 
+        $query = "UPDATE ideas SET status= 'closed', closed_date = :date_time WHERE id_idea=:id_idea";
         $ps = $this->_connection->prepare($query);
-        //$ps->bindValue(':status','opened');
-        //$ps->bindValue(':closed_date',$datetime);
+        $ps->bindValue(':date_time',$date_time);
         $ps->bindValue(':id_idea', $id_idea);
         $ps->execute();
     }
 
-    public function idea_refuse_status($id_idea, $datetime){ 
-        $query = "UPDATE ideas SET status= 'refused', refused_date = :datetime WHERE id_idea=:id_idea";
+    public function idea_refuse_status($id_idea, $date_time){ 
+        $query = "UPDATE ideas SET status= 'refused', refused_date = :date_time WHERE id_idea=:id_idea";
         $ps = $this->_connection->prepare($query);
-        //$ps->bindValue(':status','opened');
-        //$ps->bindValue(':refused_date',$datetime);
+        $ps->bindValue(':date_time',$date_time);
         $ps->bindValue(':id_idea', $id_idea);
         $ps->execute();
     }
@@ -370,7 +369,19 @@ class Db
     }
 
     public function get_admin_list() {
-        $query = 'SELECT * FROM members WHERE is_admin = 1';
+        $query = 'SELECT * FROM members WHERE is_admin = 1 AND is_banned = 0';
+        $ps = $this->_connection->prepare($query);
+        $ps->execute();
+        $tableau = array();
+        while ($row = $ps->fetch()) {
+            $tableau[] = new Member($row->id_member,$row->username,$row->email_adress,$row->password,$row->is_admin,
+                $row->is_banned);
+        }
+        return $tableau;
+    }
+
+    public function get_banned_list() {
+        $query = 'SELECT * FROM members WHERE is_banned = 1';
         $ps = $this->_connection->prepare($query);
         $ps->execute();
         $tableau = array();
@@ -382,7 +393,7 @@ class Db
     }
 
     public function get_simple_members_list() {
-        $query = 'SELECT * FROM members WHERE is_admin = 0';
+        $query = 'SELECT * FROM members WHERE is_admin = 0 AND is_banned = 0';
         $ps = $this->_connection->prepare($query);
         $ps->execute();
         $tableau = array();
@@ -406,6 +417,14 @@ class Db
         $ps->bindValue(':id_member',$id_member);
         $ps->execute();
     }
+
+    public function ban_member($id_member) {
+        $query = 'UPDATE members SET is_banned=1 WHERE id_member=:id_member';
+        $ps = $this->_connection->prepare($query);
+        $ps->bindValue(':id_member',$id_member);
+        $ps->execute();
+    }
+
 
     # Function that performs a SELECT in the members table
     # and which returns a Array of object

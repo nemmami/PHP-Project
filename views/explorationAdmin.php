@@ -172,12 +172,12 @@
                                         <td>
                                             <input type="radio" name="open"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <!--<?php $tabIdeasExploration[$i]->update_status("opened", $tabIdeasExploration[$i]->getIdIdea()) ?> -->          
+                                                  
                                         </td>
                                         <td>
                                             <input type="radio" name="close"
                                                    value="<?php echo $tabIdeasExploration[$i]->html_IdIdea() ?>">
-                                                   <!--<?php $tabIdeasExploration[$i]->update_status("closed", $tabIdeasExploration[$i]->getIdIdea()) ?>-->      
+                              
                                         </td>
                                     </tr>
                                 <?php } ?>

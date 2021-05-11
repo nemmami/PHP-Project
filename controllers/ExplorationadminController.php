@@ -39,8 +39,7 @@ class ExplorationadminController{
             } else {
                 date_default_timezone_set('Europe/Brussels');
                 $datetime = date("Y-m-d H:i:s");
-                $status = "closed";
-                $this->_db->update_status($status, $_POST['close'], $datetime);
+                $this->_db->idea_close_status($_POST['close'], $datetime);
                 $notificationSelect = 'The idea\'s status has been updated';
             }
         }
@@ -52,23 +51,8 @@ class ExplorationadminController{
             } else {
                 date_default_timezone_set('Europe/Brussels');
                 $datetime = date("Y-m-d H:i:s");
-                $status = "refused";
-                //$idea = $this->_db->get_idea($_SESSION['idea']);
-                //$id_idea = $idea.getIdIdea();
-                $this->_db->update_status($status, $_POST['refuse'], $datetime);
+                $this->_db->idea_refuse_status($_POST['refuse'], $datetime);
                 $notificationSelect = 'The idea\'s status has been updated';
-            }
-        }
-
-
-        # Redirection to the comment page
-        if(!empty($_POST['form_comments'])) {
-            if(empty($_POST['comments'])) {
-                $notificationSelect = 'Please select an idea';
-            } else {
-                $_SESSION['idea'] = $_POST['comments'];
-                header("Location: index.php?action=comments");
-                die();
             }
         }
 

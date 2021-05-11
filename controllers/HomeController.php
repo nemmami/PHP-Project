@@ -19,9 +19,12 @@ class HomeController {
         if(empty($_POST['form_login'])) {
             # The user need to complete the form
             $notificationLogin = '';
-        } elseif (!$this->_db->valider_utilisateur($_POST['email'], $_POST['password'])) {
+        } elseif (!$this->_db->valide_user($_POST['email'], $_POST['password'])) {
             # wrong authentification
             $notificationLogin = 'Your authentication data are wrong.';
+        } elseif ($this->_db->get_member($_POST['email'])->html_IsBanned() == 1) {
+            # Banned member authentification
+            $notificationLogin = 'Your authentication data are from a Banned account.';
         } else {
             # The user is well authenticated
             # session variable $_SESSION['authenticated'] created

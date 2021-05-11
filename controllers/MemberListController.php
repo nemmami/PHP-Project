@@ -16,11 +16,46 @@ class MemberListController {
         
         
         $notificationRole = '';
+        
+
+
+        
+        if (!empty($_POST['form_remo'])) {
+            if(empty($_POST['remove'])) {
+                $notificationRole = 'Please select a member';
+            } else {
+                $this->_db->update_admin_to_member($_POST['remove']);
+                $notificationRole = 'Acces has been updated.';
+            }
+        }
+
+        if (!empty($_POST['form_up'])) {
+            if(empty($_POST['upgrade'])) {
+                $notificationRole = 'Please select a member';
+            } else {
+                $this->_db->update_member_to_admin($_POST['upgrade']);
+                $notificationRole = 'Acces has been updated.';
+            }
+        }
+
+        if (!empty($_POST['form_ban'])) {
+            if(empty($_POST['upgrade'])) {
+                $notificationRole = 'Please select a member';
+            } else {
+                $this->_db->ban_member($_POST['upgrade']);
+                $notificationRole = 'Member banned !';
+            }
+        }
+
         if(!empty($_POST['form_role'])) {
             if($_POST['form_role'] == "Admin") {
                 $role = 'Admin';
                 $tabMembers = $this->_db->get_admin_list();
                 $notificationRole = 'The table show Admin members.';
+            } elseif($_POST['form_role'] == "Banned") {
+                $role = 'Banned';
+                $tabMembers = $this->_db->get_banned_list();
+                $notificationRole = 'The table show Banned members.';
             } else {
                 $role = 'Member';
                 $tabMembers = $this->_db->get_simple_members_list();
@@ -32,26 +67,6 @@ class MemberListController {
             $tabMembers = $this->_db->get_simple_members_list();
             $notificationRole = 'The table show non-admin Members.';
         }
-
-
-        if (!empty($_POST['form_remo'])) {
-            if(empty($_POST['remove'])) {
-                $notificationVote = 'Please select a member';
-            } else {
-                $this->_db->update_admin_to_member($_SESSION['member']);
-                $notificationVote = 'Acces has been updated.';
-            }
-        }
-
-        if (!empty($_POST['form_up'])) {
-            if(empty($_POST['upgrade'])) {
-                $notificationVote = 'Please select a member';
-            } else {
-                $this->_db->update_member_to_admin($_SESSION['member']);
-                $notificationVote = 'Acces has been updated.';
-            }
-        }
-
 
         include (VIEWS_PATH."memberList.php");
     }
