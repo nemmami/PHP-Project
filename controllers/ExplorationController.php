@@ -45,13 +45,17 @@ class ExplorationController{
         }
 
         # Limit table management
+        $top = 0;
         if(!empty($_POST['form_tab'])) {
             if($_POST['form_tab'] == 'top_3') {
                 $tabIdeasExploration = $this->_db->get_idea_exploration_limit_3($_SESSION['member']);
+                $top = 3;
             } elseif ($_POST['form_tab'] == 'top_10') {
                 $tabIdeasExploration = $this->_db->get_idea_exploration_limit_10($_SESSION['member']);
+                $top = 10;
             } else {
                 $tabIdeasExploration = $this->_db->get_idea_exploration($_SESSION['member']);
+                $top = 'all';
             }
         }
         else {
@@ -59,7 +63,7 @@ class ExplorationController{
         }
 
         # Filter table management
-        $filter = 'submitted';
+        $filter = 'all';
         $notificationFilter = 'The table show submitted ideas';
         if(!empty($_POST['form_filter'])) {
             if($_POST['form_filter'] == 'submitted') {
