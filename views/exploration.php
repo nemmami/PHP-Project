@@ -151,7 +151,7 @@
                         <br>
                     </form>
                     <!-- refused ideas -->
-                <?php } else { ?>
+                <?php } elseif ($filter == 'refused') { ?>
                     <?php echo $notificationFilter ?>
                     <form action="?action=exploration" method="post">
                         <?php echo $notificationVote ?>
@@ -189,6 +189,8 @@
                         <br>
                         <br>
                     </form>
+                <?php } else { ?>
+
                 <?php } ?>
             </div>
         </div>
