@@ -16,34 +16,31 @@ class MemberListController {
         
         
         $notificationRole = '';
-        
-
-
-        
+        $notificationUpdate = '';
         if (!empty($_POST['form_remo'])) {
             if(empty($_POST['remove'])) {
-                $notificationRole = 'Please select a member';
+                $notificationUpdate = 'Please select a member';
             } else {
                 $this->_db->update_admin_to_member($_POST['remove']);
-                $notificationRole = 'Acces has been updated.';
+                $notificationUpdate = 'Acces has been updated.';
             }
         }
 
         if (!empty($_POST['form_up'])) {
             if(empty($_POST['upgrade'])) {
-                $notificationRole = 'Please select a member';
+                $notificationUpdate = 'Please select a member';
             } else {
                 $this->_db->update_member_to_admin($_POST['upgrade']);
-                $notificationRole = 'Acces has been updated.';
+                $notificationUpdate = 'Acces has been updated.';
             }
         }
 
         if (!empty($_POST['form_ban'])) {
             if(empty($_POST['upgrade'])) {
-                $notificationRole = 'Please select a member';
+                $notificationUpdate = 'Please select a member';
             } else {
                 $this->_db->ban_member($_POST['upgrade']);
-                $notificationRole = 'Member banned !';
+                $notificationUpdate = 'Member banned !';
             }
         }
 
