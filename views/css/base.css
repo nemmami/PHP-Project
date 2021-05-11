@@ -46,6 +46,10 @@
     margin-left: 0px;
 }
 
+.list_member{
+    text-align: center;
+}
+
 .main_idea {
     text-align: center;
 }
@@ -93,6 +97,12 @@ nav {
     background-color: grey;
     font-size: 25px;
 }
+
+h4 {
+    color:darkred;
+    text-align: center;
+}
+
 
 h5 {
     text-align: center;
