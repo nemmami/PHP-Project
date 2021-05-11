@@ -79,11 +79,7 @@ class ExplorationController{
                 $notificationFilter = 'The table show refused ideas';
             }
         }
-        else {
-            $filter = 'submitted';
-            $tabIdeasExploration = $this->_db->get_idea_filter($_SESSION['member'], $filter);
-            $notificationFilter = 'The table show submitted ideas';
-        }
+
 
         include (VIEWS_PATH."exploration.php");
 
