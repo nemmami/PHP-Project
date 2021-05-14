@@ -98,6 +98,17 @@ nav {
     font-size: 25px;
 }
 
+nav #navbarNavDropdownAdmin {
+    text-align: end;
+    height: 50px;
+    width: 0px;
+    margin-left:-300px;
+    margin-top: 0px;
+    color: black;
+    background-color: grey;
+    font-size: 25px;
+}
+
 h4 {
     color:darkred;
     text-align: center;
