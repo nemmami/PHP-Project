@@ -5,13 +5,6 @@
                 <h1>LIST OF IDEAS</h1>
                 <!-- differents filter for the exploration table -->
                 <div class="filter">
-                    <form action="?action=explorationAdmin" method="post">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="submit" class="btn btn-primary" name="form_tab" value="top_3">Top 3</button>
-                            <button type="submit" class="btn btn-primary" name="form_tab" value="top_10">Top 10</button>
-                            <button type="submit" class="btn btn-primary" name="form_tab" value="all">All</button>
-                        </div>
-                    </form>
                     <br>
                     <form action="?action=explorationAdmin" method="post">
                         <div class="btn-group" role="group" aria-label="Basic example">

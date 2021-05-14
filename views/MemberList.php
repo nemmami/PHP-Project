@@ -23,9 +23,11 @@
             <form class="members" action="?action=memberList" method="post">
             <?php if ($role == 'Admin') { ?>
               <input type="submit" name="form_remo" value="Remove Admin acces to :">
+              <br>
             <?php } elseif ($role == 'Member') { ?>
               <input type="submit" name="form_up" value="Give Admin acces to :">
               <input type="submit" name="form_ban" value="BAN">
+              <br>
               <?php } ?>
             <br>
 

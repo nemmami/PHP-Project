@@ -199,33 +199,6 @@ class Db
         $ps->execute();
     }
 
-    public function update_status($status, $id_idea, $datetime){ 
-        if($status == 'submitted'){
-            $query = "UPDATE ideas SET status= 'submitted', submitted_date = datetime WHERE id_idea=:id_idea";
-            $ps = $this->_connection->prepare($query);
-            $ps->bindValue('submitted',$status);
-            $ps->bindValue(':submitted_date',$datetime);
-            $ps->execute();   
-        }elseif ($status == "opened") {
-            $query = "UPDATE ideas SET status= 'opened', 'opened_date=datetime WHERE id_idea=:id_idea";
-            $ps = $this->_connection->prepare($query);
-            $ps->bindValue(':status',$status);
-            $ps->bindValue(':opened_date',$datetime);
-            $ps->execute();
-        }elseif($status == "refused"){
-            $query = "UPDATE ideas SET status= 'refused', refused_date=datetime WHERE id_idea=:id_idea";
-            $ps = $this->_connection->prepare($query);
-            $ps->bindValue('refused',$status);
-            $ps->bindValue(':refused_date',$datetime);
-            $ps->execute();
-        }else{
-            $query = "UPDATE ideas SET status= 'closed', closed_date=datetime WHERE id_idea=:id_idea";
-            $ps = $this->_connection->prepare($query);
-            $ps->bindValue('closed',$status);
-            $ps->bindValue(':closed_date',$datetime);
-            $ps->execute();
-        }
-    }
 
     public function idea_open_status($id_idea, $date_time){ 
         $query = "UPDATE ideas SET status='opened',opened_date=:date_time 
