@@ -1,3 +1,3 @@
-# Boilerplate
+# PHP project
 
-Boilerplate code provided to the students in order to start the project
+Project of a Forum made with PHP
